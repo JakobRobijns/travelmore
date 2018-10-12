@@ -1,15 +1,15 @@
 package be.thomasmore.travelmore.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Persoon")
 public class Persoon {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(name = "voornaam")
     private String voornaam;
@@ -23,6 +23,13 @@ public class Persoon {
     private String wachtwoord;
     @Column(name = "functie")
     private int functie;
+    @OneToMany(mappedBy = "persoon")
+    private List<Boeking> boekingen = new ArrayList<>();
+    @ManyToMany(mappedBy = "personen")
+    private List<Betaalmethode> betaalmethodes = new ArrayList<>();
+
+    public Persoon() {
+    }
 
     public int getId() {
         return id;
@@ -78,5 +85,21 @@ public class Persoon {
 
     public void setFunctie(int functie) {
         this.functie = functie;
+    }
+
+    public List<Boeking> getBoekingen() {
+        return boekingen;
+    }
+
+    public void setBoekingen(List<Boeking> boekingen) {
+        this.boekingen = boekingen;
+    }
+
+    public List<Betaalmethode> getBetaalmethodes() {
+        return betaalmethodes;
+    }
+
+    public void setBetaalmethodes(List<Betaalmethode> betaalmethodes) {
+        this.betaalmethodes = betaalmethodes;
     }
 }
