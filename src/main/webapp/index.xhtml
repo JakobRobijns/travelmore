@@ -8,30 +8,31 @@
 <h:head><title>Travel More!</title></h:head>
 <h:body>
     <h:graphicImage name="/images/headerlogo.png" alt="headerlogo"/>
-      <p:dataTable var="location" value="#{locationController.locations}" id="locationDataTable">
-         <p:column headerText="Id">
-            <h:outputText value="#{location.id}" />
-         </p:column>
-
-         <p:column headerText="Name">
-            <h:outputText value="#{location.name}" />
-         </p:column>
-
-         <p:column headerText="Code">
-            <h:outputText value="#{location.code}" />
-         </p:column>
-      </p:dataTable>
-      <h:form id="addLocationForm">
-         <p:panel id="panel" header="Form" style="margin-bottom:10px;">
+    <ul>
+        <ui:repeat var="p" value="#{persoonController.getPersonen()}">
+            <li>#{p.voornaam}</li>
+        </ui:repeat>
+    </ul>
+    <h:form id="addPersoonForm">
+        <p:panel id="panel" header="Form" style="margin-bottom:10px;">
             <h:panelGrid columns="4" cellpadding="5">
-               <h:outputLabel for="locationName" value="Name:" />
-               <p:inputText id="locationName" value="#{locationController.newLocation.name}"></p:inputText>
-               <h:outputLabel for="locationCode" value="Code:" />
-               <p:inputText id="locationCode" value="#{locationController.newLocation.code}">
-               </p:inputText>
-               <h:commandButton value="Toevoegen" action="#{locationController.submit}" update=":locationDataTable" />
+                <h:outputLabel for="PersoonVoornaam" value="Voornaam:" />
+                <p:inputText id="PersoonVoornaam" value="#{persoonController.newPersoon.voornaam}"></p:inputText>
+                <h:outputLabel for="PersoonNaam" value="Naam:" />
+                <p:inputText id="PersoonNaam" value="#{persoonController.newPersoon.naam}"></p:inputText>
+                <h:outputLabel for="PersoonAdres" value="Adres:" />
+                <p:inputText id="PersoonAdres" value="#{persoonController.newPersoon.adres}"></p:inputText>
+                <h:outputLabel for="PersoonEmail" value="E-mail:" />
+                <p:inputText id="PersoonEmail" value="#{persoonController.newPersoon.email}"></p:inputText>
+                <h:outputLabel for="PersoonWachtwoord" value="Wachtwoord:" />
+                <p:inputText id="PersoonWachtwoord" value="#{persoonController.newPersoon.wachtwoord}"></p:inputText>
+                <h:outputLabel for="PersoonFunctie" value="Functie:" />
+                <p:inputText id="PersoonFunctie" value="#{persoonController.newPersoon.functie}"></p:inputText>
+                <h:outputLabel for="PersoonId" value="id:" />
+                <p:inputText id="PersoonId" value="#{persoonController.newPersoon.id}"></p:inputText>
+                <h:commandButton value="Toevoegen" action="#{persoonController.submit}" />
             </h:panelGrid>
-         </p:panel>
-      </h:form>
+        </p:panel>
+    </h:form>
 </h:body>
 </html>

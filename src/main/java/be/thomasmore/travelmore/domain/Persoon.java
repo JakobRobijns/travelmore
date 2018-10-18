@@ -6,7 +6,16 @@ import java.util.List;
 
 @Entity
 @Table(name = "Persoon")
+@NamedQueries(
+        {
+                @NamedQuery(
+                        name = Persoon.FIND_ALL,
+                        query = "SELECT l FROM Persoon l"
+                )
+        }
+)
 public class Persoon {
+    public static final String FIND_ALL = "Persoon.findAll";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

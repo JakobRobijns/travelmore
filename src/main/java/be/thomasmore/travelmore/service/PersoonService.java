@@ -1,0 +1,25 @@
+package be.thomasmore.travelmore.service;
+
+import be.thomasmore.travelmore.domain.Persoon;
+import be.thomasmore.travelmore.repository.PersoonRepository;
+
+import javax.inject.Inject;
+import java.util.List;
+
+public class PersoonService {
+
+    @Inject
+    private PersoonRepository persoonRepository;
+
+    public Persoon findLocationById(int id) {
+        return persoonRepository.findById(id);
+    }
+
+    public List<Persoon> findAllPersonen() {
+        return persoonRepository.findAll();
+    }
+
+    public void insert(Persoon persoon) {
+        persoonRepository.insert(persoon);
+    }
+}
