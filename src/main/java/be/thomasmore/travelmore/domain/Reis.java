@@ -6,6 +6,7 @@ import java.util.Date;
 @Entity
 @Table(name = "Reis")
 public class Reis {
+    public static final String FIND_ALL = "Reis.findAll";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
