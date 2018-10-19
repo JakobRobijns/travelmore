@@ -30,5 +30,6 @@ public class PersoonController {
 
     public void submit(){
         this.persoonService.insert(newPersoon);
+        newPersoon = new Persoon();
     }
 }
