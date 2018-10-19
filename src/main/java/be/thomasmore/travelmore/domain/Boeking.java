@@ -4,7 +4,16 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Boeking")
+@NamedQueries(
+        {
+                @NamedQuery(
+                        name = Boeking.FIND_ALL,
+                        query = "SELECT l FROM Boeking l"
+                )
+        }
+)
 public class Boeking {
+    public static final String FIND_ALL = "Boeking.findAll";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
