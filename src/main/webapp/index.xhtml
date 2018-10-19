@@ -3,7 +3,8 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="templates/templ.xhtml">
     <ui:define name="body">
         <div class="mainpage">
@@ -15,46 +16,49 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <h:outputLabel for="vertrek" value="Vertrekplaats:"/>
-                                    <p:inputText id="vertrek" styleClass="form-control" value="" placeholder="Vertrek"/>
+                                    <p:inputText id="vertrek" styleClass="form-control" value="#{reisController.gezochteReis.vertrekLocatie}" placeholder="Vertrek"/>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <h:outputLabel for="bestemming" value="Bestemming:"/>
-                                    <p:inputText id="bestemming" styleClass="form-control" value=""
+                                    <p:inputText id="bestemming" styleClass="form-control" value="#{reisController.gezochteReis.aankomstLocatie}"
                                                  placeholder="Bestemming"/>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <h:outputLabel for="vanDatum" value="Van:"/>
-                                    <p:inputText id="vanDatum" styleClass="form-control" value=""
+                                    <p:inputText id="vanDatum" styleClass="form-control" value="#{reisController.gezochteReis.vertrekDatum}"
                                                  placeholder="dd/mm/yyyy"/>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <h:outputLabel for="totDatum" value="Tot:"/>
-                                    <p:inputText id="totDatum" styleClass="form-control" value=""
+                                    <p:inputText id="totDatum" styleClass="form-control" value="#{reisController.gezochteReis.aankomstDatum}"
                                                  placeholder="dd/mm/yyyy"/>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <h:outputLabel for="aantal" value="Aantal:"/>
-                                    <p:inputText id="aantal" styleClass="form-control" value=""
+                                    <p:inputText id="aantal" styleClass="form-control" value="#{reisController.gezochteReis.aantalPlaatsen}"
                                                  placeholder="Aantal pers."/>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <h:outputLabel for="maxPrijs" value="Max prijs:"/>
-                                    <p:inputText id="maxPrijs" styleClass="form-control" value=""
+                                    <p:inputText id="maxPrijs" styleClass="form-control" value="#{reisController.gezochteReis.prijs}"
                                                  placeholder="Max prijs"/>
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="transportmiddel">Vervoer</label>
-                                    <select class="form-control" id="transportmiddel">
-                                        <option>Bus</option>
-                                        <option>Vliegtuig</option>
-                                        <option>Trein</option>
-                                    </select>
+                                <div class="form-group col-md-12">
+                                    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                                        <p:outputLabel for="transportmiddel" value="Vervoer:" />
+                                        <p:selectOneMenu id="transportmiddel" value="#{reisController.gezochteReis.transportmiddel}" style="width:125px" >
+                                            <f:selectItem itemLabel="Select One" itemValue="" />
+                                            <f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
+                                            <f:selectItem itemLabel="PS4" itemValue="PS4" />
+                                            <f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+                                        </p:selectOneMenu>
+                                    </h:panelGrid>
                                 </div>
                             </div>
                             <h:commandButton styleClass="btn btn-primary" value="Zoeken"
