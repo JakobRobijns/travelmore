@@ -8,6 +8,9 @@ import java.util.List;
 @Table(name = "Transportmiddel")
 public class Transportmiddel {
 
+
+    public static final String FIND_ALL = "Transportmiddel.findAll";
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
