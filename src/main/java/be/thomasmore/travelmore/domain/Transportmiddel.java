@@ -6,6 +6,14 @@ import java.util.List;
 
 @Entity
 @Table(name = "Transportmiddel")
+@NamedQueries(
+        {
+                @NamedQuery(
+                        name = Transportmiddel.FIND_ALL,
+                        query = "SELECT l FROM Transportmiddel l"
+                )
+        }
+)
 public class Transportmiddel {
 
 

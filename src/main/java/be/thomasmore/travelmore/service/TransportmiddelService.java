@@ -17,7 +17,7 @@ public class TransportmiddelService {
         return transportmiddelRepository.findById(id);
     }
 
-    public List<Transportmiddel> findAllPersonen() {
+    public List<Transportmiddel> findAllTransportmiddelen() {
         return transportmiddelRepository.findAll();
     }
 
