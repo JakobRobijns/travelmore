@@ -25,4 +25,10 @@ public class ReisService {
     public void insert(Reis reis) {
         reisRepository.insert(reis);
     }
+    public void update(Reis reis) {
+        reisRepository.edit(reis);
+    }
+    public void delete(Reis reis) {
+        reisRepository.remove(reis);
+    }
 }

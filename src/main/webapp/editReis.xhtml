@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="templates/templ.xhtml">
+    <ui:define name="body">
+        <div class="mainpage">
+            <div class="container">
+                <div id="filter-card" class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Reis aanpassen van #{reisAdminController.reis.vertrekLocatie.land.naam} naar #{reisAdminController.reis.aankomstLocatie.land.naam}</h3>
+                        <h:form >
+                            <h:outputLabel value="VertrekDatum" for="vertrekdatum"/>
+                            <h:inputText value="#{reisAdminController.reis.vertrekDatum}" id="vertrekdatum"/>
+                            <br/>
+                            <br/>
+
+                            <h:outputLabel value="AankomstDatum" for="aankomstdatum"/>
+                            <h:inputText value="#{reisAdminController.reis.aankomstDatum}" id="aankomstdatum"/>
+                            <br/>
+                            <br/>
+
+                            <h:outputLabel value="AantalPlaatsen" for="aantalplaatsen"/>
+                            <h:inputText value="#{reisAdminController.reis.aantalPlaatsen}" id="aantalplaatsen"/>
+                            <br/>
+                            <br/>
+
+                            <h:outputLabel value="Prijs" for="prijs"/>
+                            <h:inputText value="#{reisAdminController.reis.prijs}" id="prijs"/>
+                            <br/>
+                            <br/>
+
+                            <h:outputLabel value="VertrekLocatie" for="vertreklocatie"/>
+                            <h:inputText value="#{reisAdminController.reis.vertrekLocatie.land.naam}" id="vertreklocatie"/>
+                            <br/>
+                            <br/>
+
+                            <h:outputLabel value="AankomstLocatie" for="aankomstlocatie"/>
+                            <h:inputText value="#{reisAdminController.reis.aankomstLocatie.land.naam}" id="aankomstlocatie"/>
+                            <br/>
+                            <br/>
+
+                            <h:outputLabel value="TransportMiddel" for="transportmiddel"/>
+                            <h:inputText value="#{reisAdminController.reis.transportmiddel.naam}" id="transportmiddel"/>
+                            <br/>
+                            <br/>
+
+                            <h:commandButton value="Aanpassen" action="#{reisAdminController.ReisEdit()}" />
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

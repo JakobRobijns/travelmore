@@ -2,9 +2,18 @@ package be.thomasmore.travelmore.domain;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "Reis")
+@Table(name = "reis")
+@NamedQueries(
+        {
+                @NamedQuery(
+                        name = Reis.FIND_ALL,
+                        query = "SELECT l FROM Reis l"
+                )
+        }
+)
 public class Reis {
     public static final String FIND_ALL = "Reis.findAll";
 

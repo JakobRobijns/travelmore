@@ -21,4 +21,11 @@ public class ReisRepository {
     public void insert(Reis reis) {
         entityManager.persist(reis);
     }
+    public void edit(Reis reis) {
+        entityManager.merge(reis);
+    }
+    public void remove(Reis reis) {
+        entityManager.remove(entityManager.merge(reis));
+    }
+
 }
