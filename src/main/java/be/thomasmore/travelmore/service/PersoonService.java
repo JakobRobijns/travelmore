@@ -13,13 +13,15 @@ public class PersoonService {
     @Inject
     private PersoonRepository persoonRepository;
 
-    public Persoon findLocationById(int id) {
+    public Persoon findPersoonById(int id) {
         return persoonRepository.findById(id);
     }
 
     public List<Persoon> findAllPersonen() {
         return persoonRepository.findAll();
     }
+
+    public List<Persoon> authPersoon(String email, String wachtwoord) { return persoonRepository.auth(email, wachtwoord); }
 
     public void insert(Persoon persoon) {
         persoonRepository.insert(persoon);

@@ -12,7 +12,23 @@
                 <div id="filter-card" class="card">
                     <div class="card-body">
                         <h3 class="card-title">Inloggen</h3>
-
+                        <h:form id="zoekReisForm">
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <h:outputLabel for="email" value="E-mail:"/>
+                                    <p:inputText id="email" styleClass="form-control" value="#{authController.newPersoon.email}" placeholder="E-mail"/>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <h:outputLabel for="wachtwoord" value="Wachtwoord:"/>
+                                    <p:password id="wachtwoord" styleClass="form-control" value="#{authController.newPersoon.wachtwoord}"
+                                                 placeholder="Wachtwoord"/>
+                                </div>
+                            </div>
+                            <h:commandButton styleClass="btn btn-primary" value="Aanmelden"
+                                             action="#{authController.submit}"/>
+                        </h:form>
                     </div>
                 </div>
             </div>
