@@ -21,11 +21,14 @@ public class LocatieService {
         return locatieRepository.findById(id);
     }
 
-    public List<Locatie> findAllPersonen() {
+    public List<Locatie> findAllLocaties() {
         return locatieRepository.findAll();
     }
 
     public void insert(Locatie locatie) {
         locatieRepository.insert(locatie);
     }
+
+
+
 }

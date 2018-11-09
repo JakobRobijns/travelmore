@@ -18,6 +18,7 @@ public class LocatieRepository {
         return entityManager.createNamedQuery(Locatie.FIND_ALL, Locatie.class).getResultList();
     }
 
+
     public void insert(Locatie locatie) {
         entityManager.persist(locatie);
     }

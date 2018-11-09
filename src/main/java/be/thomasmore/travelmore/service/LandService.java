@@ -13,11 +13,11 @@ public class LandService {
     @Inject
     private LandRepository landRepository;
 
-    public Land findLocationById(int id) {
+    public Land findLandById(int id) {
         return landRepository.findById(id);
     }
 
-    public List<Land> findAllPersonen() {
+    public List<Land> findAllLanden() {
         return landRepository.findAll();
     }
 

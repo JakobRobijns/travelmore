@@ -16,12 +16,15 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <h:outputLabel for="vertrek" value="Vertrekplaats:"/>
-                                    <p:inputText id="vertrek" styleClass="form-control" value="#{reisController.gezochteReis.vertrekLocatie}" placeholder="Vertrek"/>
+                                    <h:selectOneMenu styleClass="form-control" id="vertrek">
+                                        <f:selectItems value="#{indexController.locaties}" var="vertrek" itemValue="#{vertrek.id}" itemLabel="#{vertrek.naam} (#{vertrek.land.naam})" />
+                                    </h:selectOneMenu>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <h:outputLabel for="bestemming" value="Bestemming:"/>
-                                    <p:inputText id="bestemming" styleClass="form-control" value="#{reisController.gezochteReis.aankomstLocatie}"
-                                                 placeholder="Bestemming"/>
+                                    <h:selectOneMenu styleClass="form-control" id="bestemming">
+                                        <f:selectItems value="#{indexController.locaties}" var="bestemming" itemValue="#{bestemming.id}" itemLabel="#{bestemming.naam} (#{bestemming.land.naam})" />
+                                    </h:selectOneMenu>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -46,6 +49,14 @@
                                     <h:outputLabel for="maxPrijs" value="Max prijs:"/>
                                     <p:inputText id="maxPrijs" styleClass="form-control" value="#{reisController.gezochteReis.prijs}"
                                                  placeholder="Max prijs"/>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <h:outputLabel for="vervoer" value="Vervoer:"/>
+                                    <h:selectOneMenu styleClass="form-control" id="vervoer">
+                                        <f:selectItems value="#{indexController.transportmiddelen}" var="middel" itemValue="#{middel.id}" itemLabel="#{middel.naam}" />
+                                    </h:selectOneMenu>
                                 </div>
                             </div>
                             <div class="form-row">
