@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 /**
  * Created by freman on 18/10/2018.
@@ -20,9 +21,13 @@ public class LocatieRestService {
     @GET
     @Path("/getlocation")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Locatie getLocationById(@QueryParam("id") int id) {
-        return locationService.findLocationById(id);
+    public List<Locatie> findAllLocations() {
+        return locationService.findAllLocations();
     }
+
+    /* public Locatie getLocationById(@QueryParam("id") int id) {
+        return locationService.findLocationById(id);
+    }*/
 
     @POST
     @Path("/addlocation")
