@@ -54,7 +54,7 @@ public class AuthController {
         this.errorMsg = errorMsg;
     }
 
-    public String submit() {
+    public String aanmelden() {
         List<Persoon> ingelogdePersoon = persoonService.authPersoon(newPersoon.getEmail(), newPersoon.getWachtwoord());
 
         if(ingelogdePersoon.size() > 0){
@@ -63,7 +63,6 @@ public class AuthController {
             newPersoon = new Persoon();
             return "index";
         } else {
-            //TODO: Error tonen bij ongeldige gegevens
             errorMsg = "Geen account gevonden!";
             return "login";
         }
@@ -73,4 +72,18 @@ public class AuthController {
         logedinPersoon = new Persoon();
         return "login";
     }
+
+    public String registreren(){
+        if(this.persoonService.getByMail(newPersoon.getEmail()).size() == 0){
+            this.persoonService.insert(newPersoon);
+            newPersoon = new Persoon();
+            errorMsg = "";
+            return "login";
+        } else{
+            errorMsg = "Er bestaat al een account met deze e-mail!";
+            return "";
+        }
+    }
+
+    //TODO: Wachtwoord vegeten, Wachtwoord hashen
 }

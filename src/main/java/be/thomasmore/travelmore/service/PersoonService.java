@@ -23,6 +23,8 @@ public class PersoonService {
 
     public List<Persoon> authPersoon(String email, String wachtwoord) { return persoonRepository.auth(email, wachtwoord); }
 
+    public List<Persoon> getByMail(String email) { return persoonRepository.getByMail(email); }
+
     public void insert(Persoon persoon) {
         persoonRepository.insert(persoon);
     }
