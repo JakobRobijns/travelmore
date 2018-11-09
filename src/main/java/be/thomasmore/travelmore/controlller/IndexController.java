@@ -1,6 +1,7 @@
 package be.thomasmore.travelmore.controlller;
 
 
+import be.thomasmore.travelmore.domain.Persoon;
 import be.thomasmore.travelmore.domain.Transportmiddel;
 import be.thomasmore.travelmore.service.TransportmiddelService;
 import be.thomasmore.travelmore.domain.Locatie;
@@ -22,14 +23,12 @@ public class IndexController {
     public List<Transportmiddel> transportmiddelen;
     public List<Locatie> locaties;
 
-
     @Inject
     private TransportmiddelService transportmiddelService;
     @Inject
     private LocatieService locatieService;
     @Inject
     private LandService landService;
-
 
     public void init() {
         this.transportmiddelen = this.getTransportmiddelen();
