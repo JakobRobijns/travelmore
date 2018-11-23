@@ -18,6 +18,14 @@ public class PersoonRepository {
         return entityManager.createNamedQuery(Persoon.FIND_ALL, Persoon.class).getResultList();
     }
 
+    public List<Persoon> auth(String email, String wachtwoord) {
+        return entityManager.createNamedQuery(Persoon.AUTH, Persoon.class).setParameter("email", email).setParameter("wachtwoord", wachtwoord).getResultList();
+    }
+
+    public List<Persoon> getByMail(String email) {
+        return entityManager.createNamedQuery(Persoon.FIND_BY_MAIL, Persoon.class).setParameter("email", email).getResultList();
+    }
+
     public void insert(Persoon persoon) {
         entityManager.persist(persoon);
     }

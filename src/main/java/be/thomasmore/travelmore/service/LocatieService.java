@@ -13,6 +13,10 @@ public class LocatieService {
     @Inject
     private LocatieRepository locatieRepository;
 
+    public List<Locatie> findAllLocations() {
+        return locatieRepository.findAll();
+    }
+
     public List<Locatie> findAll() {
         return locatieRepository.findAll();
     }
@@ -21,7 +25,7 @@ public class LocatieService {
         return locatieRepository.findById(id);
     }
 
-    public List<Locatie> findAllPersonen() {
+    public List<Locatie> findAllLocaties() {
         return locatieRepository.findAll();
     }
 

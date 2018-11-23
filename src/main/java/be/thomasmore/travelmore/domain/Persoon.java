@@ -10,15 +10,25 @@ import java.util.List;
         {
                 @NamedQuery(
                         name = Persoon.FIND_ALL,
-                        query = "SELECT l FROM Persoon l"
+                        query = "SELECT p FROM Persoon p"
+                ),
+                @NamedQuery(
+                        name = Persoon.AUTH,
+                        query = "SELECT p FROM Persoon p WHERE p.email = :email and p.wachtwoord = :wachtwoord"
+                ),
+                @NamedQuery(
+                        name = Persoon.FIND_BY_MAIL,
+                        query = "SELECT p FROM Persoon p WHERE p.email = :email"
                 )
         }
 )
 public class Persoon {
     public static final String FIND_ALL = "Persoon.findAll";
+    public static final String AUTH = "Persoon.auth";
+    public static final String FIND_BY_MAIL = "Persoon.findByMail";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     @Column(name = "voornaam")
     private String voornaam;
@@ -31,7 +41,7 @@ public class Persoon {
     @Column(name = "wachtwoord")
     private String wachtwoord;
     @Column(name = "functie")
-    private int functie;
+    private String functie = "USER";
     @OneToMany(mappedBy = "persoon")
     private List<Boeking> boekingen = new ArrayList<>();
     @ManyToMany(mappedBy = "personen")
@@ -88,11 +98,11 @@ public class Persoon {
         this.wachtwoord = wachtwoord;
     }
 
-    public int getFunctie() {
+    public String  getFunctie() {
         return functie;
     }
 
-    public void setFunctie(int functie) {
+    public void setFunctie(String functie) {
         this.functie = functie;
     }
 
