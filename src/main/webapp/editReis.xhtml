@@ -4,51 +4,80 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <ui:composition template="templates/templ.xhtml">
     <ui:define name="body">
         <div class="mainpage">
             <div class="container">
                 <div id="filter-card" class="card">
                     <div class="card-body">
-                        <h3 class="card-title">Reis aanpassen van #{reisAdminController.reis.vertrekLocatie.land.naam} naar #{reisAdminController.reis.aankomstLocatie.land.naam}</h3>
+                        <c:if test="#{not empty reisAdminController.reis.vertrekLocatie.land.naam}">
+                            <h3 class="card-title">Reis aanpassen van #{reisAdminController.reis.vertrekLocatie.land.naam} naar #{reisAdminController.reis.aankomstLocatie.land.naam}</h3>
+                        </c:if>
+                        <c:if test="#{empty reisAdminController.reis.vertrekLocatie.land.naam}">
+                            <h3 class="card-title">Reis invullen.</h3>
+                        </c:if>
+
                         <h:form >
-                            <h:outputLabel value="VertrekDatum" for="vertrekdatum"/>
-                            <h:inputText value="#{reisAdminController.reis.vertrekDatum}" id="vertrekdatum"/>
-                            <br/>
-                            <br/>
+                        <h:panelGrid columns="2">
+                           <h:outputLabel value="VertrekDatum" for="vertrekdatum"/>
+                            <h:inputText value="#{reisAdminController.reis.vertrekDatum}" id="vertrekdatum" a:placeholder="yyyy-MM-dd HH:mm:ss" >
+                                <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss"/>
+                            </h:inputText>
 
                             <h:outputLabel value="AankomstDatum" for="aankomstdatum"/>
-                            <h:inputText value="#{reisAdminController.reis.aankomstDatum}" id="aankomstdatum"/>
-                            <br/>
-                            <br/>
+                            <h:inputText value="#{reisAdminController.reis.aankomstDatum}" id="aankomstdatum" a:placeholder="yyyy-MM-dd HH:mm:ss">
+                                <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss"/>
+                            </h:inputText>
 
                             <h:outputLabel value="AantalPlaatsen" for="aantalplaatsen"/>
                             <h:inputText value="#{reisAdminController.reis.aantalPlaatsen}" id="aantalplaatsen"/>
-                            <br/>
-                            <br/>
 
                             <h:outputLabel value="Prijs" for="prijs"/>
                             <h:inputText value="#{reisAdminController.reis.prijs}" id="prijs"/>
-                            <br/>
-                            <br/>
 
-                            <h:outputLabel value="VertrekLocatie" for="vertreklocatie"/>
-                            <h:inputText value="#{reisAdminController.reis.vertrekLocatie.land.naam}" id="vertreklocatie"/>
-                            <br/>
-                            <br/>
+
+                            <h:outputLabel value="VertrekLocatie" for="vertrekLocatie"/>
+                            <h:selectOneMenu value="#{reisAdminController.reis.vertrekLocatie.naam}" id="vertrekLocatie">
+                                <c:if test="#{empty reisAdminController.reis.vertrekLocatie.naam}">
+                                    <f:selectItems value="#{reisAdminController.locaties}" var="land" itemValue="#{land.id}" itemLabel="#{land.naam}" />
+                                </c:if>
+                                <c:if test="#{not empty reisAdminController.reis.vertrekLocatie.naam}">
+                                    <f:selectItems value="#{reisAdminController.getVertrektLocatiesWithReis()}" var="land" itemValue="#{land.id}" itemLabel="#{land.naam}" />
+                                </c:if>
+                            </h:selectOneMenu>
 
                             <h:outputLabel value="AankomstLocatie" for="aankomstlocatie"/>
-                            <h:inputText value="#{reisAdminController.reis.aankomstLocatie.land.naam}" id="aankomstlocatie"/>
-                            <br/>
-                            <br/>
+
+                            <h:selectOneMenu value="#{reisAdminController.reis.aankomstLocatie.naam}" id="aankomstlocatie">
+                                <c:if test="#{empty reisAdminController.reis.aankomstLocatie.naam}">
+                                    <f:selectItems value="#{reisAdminController.locaties}" var="land" itemValue="#{land.id}" itemLabel="#{land.naam}" />
+                                </c:if>
+                                <c:if test="#{not empty reisAdminController.reis.aankomstLocatie.naam}">
+                                    <f:selectItems value="#{reisAdminController.getAankomstLocatiesWithReis()}" var="land" itemValue="#{land.id}" itemLabel="#{land.naam}" />
+                                </c:if>
+                            </h:selectOneMenu>
+
+
+
+
+
 
                             <h:outputLabel value="TransportMiddel" for="transportmiddel"/>
-                            <h:inputText value="#{reisAdminController.reis.transportmiddel.naam}" id="transportmiddel"/>
-                            <br/>
-                            <br/>
+                            <h:selectOneMenu value="#{reisAdminController.reis.transportmiddel.naam}" id="transportmiddel">
+                                <c:if test="#{empty reisAdminController.reis.transportmiddel.naam}">
+                                    <f:selectItems value="#{reisAdminController.transportmiddelen}" var="transport" itemValue="#{transport.id}" itemLabel="#{transport.naam}" />
+                                </c:if>
+                                <c:if test="#{not empty reisAdminController.reis.aankomstLocatie.naam}">
+                                    <f:selectItems value="#{reisAdminController.getTransportsWithReis()}" var="transport" itemValue="#{transport.id}" itemLabel="#{transport.naam}" />
+                                </c:if>
+                            </h:selectOneMenu>
 
-                            <h:commandButton value="Aanpassen" action="#{reisAdminController.ReisEdit()}" />
+
+                            <h:commandButton value="Opslaan" action="#{reisAdminController.ReisSave()}" />
+                        </h:panelGrid>
                         </h:form>
                     </div>
                 </div>

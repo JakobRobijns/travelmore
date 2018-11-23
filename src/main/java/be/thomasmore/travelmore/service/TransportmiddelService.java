@@ -13,6 +13,10 @@ public class TransportmiddelService {
     @Inject
     private TransportmiddelRepository transportmiddelRepository;
 
+    public List<Transportmiddel> findAll() {
+        return transportmiddelRepository.findAll();
+    }
+
     public Transportmiddel findLocationById(int id) {
         return transportmiddelRepository.findById(id);
     }

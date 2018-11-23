@@ -42,6 +42,13 @@ public class Reis {
     public void setId(int id) {
         this.id = id;
     }
+    public Reis(){
+
+    }
+    public Reis(Date vertrekdatum, Date aankomstdatum){
+        vertrekDatum = vertrekdatum;
+        aankomstDatum = aankomstdatum;
+    }
 
     public Date getVertrekDatum() {
         return vertrekDatum;

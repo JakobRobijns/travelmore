@@ -13,6 +13,10 @@ public class LocatieService {
     @Inject
     private LocatieRepository locatieRepository;
 
+    public List<Locatie> findAll() {
+        return locatieRepository.findAll();
+    }
+
     public Locatie findLocationById(int id) {
         return locatieRepository.findById(id);
     }
