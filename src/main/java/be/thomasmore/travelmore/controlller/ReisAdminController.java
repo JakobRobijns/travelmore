@@ -41,8 +41,12 @@ public class ReisAdminController {
     public List<Locatie> getLocaties(){
         return this.locatieService.findAll();
     }
+    public List<Transportmiddel> getTransportmiddelen(){
+        return this.transportService.findAll();
+    }
 
-
+    // functies voor het element van het object op de 1ste plaats te zetten in de array
+    // dit zodat dit als éérst te zien is in de combobox
     public List<Locatie> getAankomstLocatiesWithReis(){
 
         List<Locatie> locaties = this.locatieService.findAll();
@@ -91,7 +95,6 @@ public class ReisAdminController {
         return locaties;
 
     }
-
     public List<Transportmiddel> getTransportsWithReis(){
 
         List<Transportmiddel> transportmiddelen = this.transportService.findAll();
@@ -117,9 +120,7 @@ public class ReisAdminController {
 
     }
 
-    public List<Transportmiddel> getTransportmiddelen(){
-        return this.transportService.findAll();
-    }
+
 
     public void setReis(Reis reis){
         reisObj = reis;
@@ -134,6 +135,7 @@ public class ReisAdminController {
     }
     public String ReisInsert(){
         //reis opvullen...
+        // id's worden opggevuld in reis klasse
         Date date = Calendar.getInstance().getTime();
         setReis(new Reis(date, date));
 
@@ -144,10 +146,12 @@ public class ReisAdminController {
         if(reisObj.getId() == 0){
             //reis aanpassen
             reisService.insert(reisObj);
+            System.out.println("Inserting reis...");
         }
         else {
             //reis aanpassen
             reisService.update(reisObj);
+            System.out.println("Updating reis...");
         }
 
 

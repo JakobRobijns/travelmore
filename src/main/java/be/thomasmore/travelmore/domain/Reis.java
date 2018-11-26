@@ -48,6 +48,16 @@ public class Reis {
     public Reis(Date vertrekdatum, Date aankomstdatum){
         vertrekDatum = vertrekdatum;
         aankomstDatum = aankomstdatum;
+        Locatie tempVertrekLoc = new Locatie();
+        Locatie tempAankomstLoc = new Locatie();
+        tempVertrekLoc.setId(0);
+        tempAankomstLoc.setId(0);
+        this.setVertrekLocatie(tempVertrekLoc);
+        this.setAankomstLocatie(tempAankomstLoc);
+
+        Transportmiddel tempTrans = new Transportmiddel();
+        tempTrans.setId(0);
+        this.setTransportmiddel(tempTrans);
     }
 
     public Date getVertrekDatum() {

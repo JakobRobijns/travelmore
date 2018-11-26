@@ -40,7 +40,7 @@
 
 
                             <h:outputLabel value="VertrekLocatie" for="vertrekLocatie"/>
-                            <h:selectOneMenu value="#{reisAdminController.reis.vertrekLocatie.naam}" id="vertrekLocatie">
+                            <h:selectOneMenu value="#{reisAdminController.reis.vertrekLocatie.id}" id="vertrekLocatie">
                                 <c:if test="#{empty reisAdminController.reis.vertrekLocatie.naam}">
                                     <f:selectItems value="#{reisAdminController.locaties}" var="land" itemValue="#{land.id}" itemLabel="#{land.naam}" />
                                 </c:if>
@@ -51,7 +51,7 @@
 
                             <h:outputLabel value="AankomstLocatie" for="aankomstlocatie"/>
 
-                            <h:selectOneMenu value="#{reisAdminController.reis.aankomstLocatie.naam}" id="aankomstlocatie">
+                            <h:selectOneMenu value="#{reisAdminController.reis.aankomstLocatie.id}" id="aankomstlocatie">
                                 <c:if test="#{empty reisAdminController.reis.aankomstLocatie.naam}">
                                     <f:selectItems value="#{reisAdminController.locaties}" var="land" itemValue="#{land.id}" itemLabel="#{land.naam}" />
                                 </c:if>
@@ -61,16 +61,12 @@
                             </h:selectOneMenu>
 
 
-
-
-
-
                             <h:outputLabel value="TransportMiddel" for="transportmiddel"/>
-                            <h:selectOneMenu value="#{reisAdminController.reis.transportmiddel.naam}" id="transportmiddel">
+                            <h:selectOneMenu value="#{reisAdminController.reis.transportmiddel.id}" id="transportmiddel">
                                 <c:if test="#{empty reisAdminController.reis.transportmiddel.naam}">
                                     <f:selectItems value="#{reisAdminController.transportmiddelen}" var="transport" itemValue="#{transport.id}" itemLabel="#{transport.naam}" />
                                 </c:if>
-                                <c:if test="#{not empty reisAdminController.reis.aankomstLocatie.naam}">
+                                <c:if test="#{not empty reisAdminController.reis.transportmiddel.naam}">
                                     <f:selectItems value="#{reisAdminController.getTransportsWithReis()}" var="transport" itemValue="#{transport.id}" itemLabel="#{transport.naam}" />
                                 </c:if>
                             </h:selectOneMenu>
