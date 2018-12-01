@@ -11,55 +11,53 @@
         <div class="mainpage">
             <div class="container">
                 <div class="row">
-                    <div class="card mt-5 mx-auto">
-                        <div class="card-body">
-                            <h3 class="card-title">Registreren</h3>
-                            <c:if test="#{authController.errorMsg != ''}">
-                                <div class="alert alert-danger alert-dismissible">
-                                    #{authController.errorMsg}
-                                </div>
-                            </c:if>
-                            <h:form id="zoekReisForm">
-                                <div class="form-row">
-                                    <div class="form-group col-6">
-                                        <h:outputLabel for="voornaam" value="Voornaam:"/>
-                                        <p:inputText id="voornaam" styleClass="form-control"
-                                                     value="#{authController.newPersoon.voornaam}"
-                                                     placeholder="Voornaam" required="true"
-                                                     requiredMessage="Geef voornaam in!"/>
-
-                                        <h:message for="voornaam" styleClass="error" ></h:message>
+                    <div class="col-12 mt-3">
+                        <div class="card shadow" id="logincard">
+                            <div class="card-body">
+                                <h3 class="card-title">Registreren</h3>
+                                <c:if test="#{authController.errorMsg != ''}">
+                                    <div class="alert alert-danger alert-dismissible">
+                                        #{authController.errorMsg}
                                     </div>
-                                    <div class="form-group col-6">
-                                        <h:outputLabel for="achternaam" value="Achternaam:"/>
-                                        <p:inputText id="achternaam" styleClass="form-control"
-                                                     value="#{authController.newPersoon.naam}"
-                                                     placeholder="Achternaam" required="true"
-                                                     requiredMessage="Geef een achternaam in!"/>
+                                </c:if>
+                                <h:form id="registreerForm">
+                                    <div class="form-row">
+                                        <div class="form-group col-6">
+                                            <h:outputLabel for="voornaam" value="Voornaam:"/>
+                                            <p:inputText id="voornaam" styleClass="form-control"
+                                                         value="#{authController.newPersoon.voornaam}"
+                                                         placeholder="Voornaam" required="true"
+                                                         requiredMessage="Geef voornaam in!"/>
 
-                                        <h:message for="achternaam" styleClass="error" ></h:message>
+                                            <h:message for="voornaam" styleClass="error"></h:message>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <h:outputLabel for="achternaam" value="Achternaam:"/>
+                                            <p:inputText id="achternaam" styleClass="form-control"
+                                                         value="#{authController.newPersoon.naam}"
+                                                         placeholder="Achternaam" required="true"
+                                                         requiredMessage="Geef een achternaam in!"/>
+
+                                            <h:message for="achternaam" styleClass="error"></h:message>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-12">
+                                    <div class="form-group">
                                         <h:outputLabel for="adres" value="Adres:"/>
                                         <p:inputText id="adres" styleClass="form-control"
-                                                    value="#{authController.newPersoon.adres}"
-                                                    placeholder="Adres" required="true"
-                                                    requiredMessage="Vul een adres in!"/>
+                                                     value="#{authController.newPersoon.adres}"
+                                                     placeholder="Adres" required="true"
+                                                     requiredMessage="Vul een adres in!"/>
                                         <h:message for="adres" styleClass="error"></h:message>
                                     </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-6">
+                                    <div class="form-group">
                                         <h:outputLabel for="email" value="E-mail:"/>
                                         <p:inputText id="email" styleClass="form-control"
-                                                    value="#{authController.newPersoon.email}"
-                                                    placeholder="E-mail" required="true"
-                                                    requiredMessage="Vul een e-mail in!"/>
+                                                     value="#{authController.newPersoon.email}"
+                                                     placeholder="E-mail" required="true"
+                                                     requiredMessage="Vul een e-mail in!"/>
                                         <h:message for="email" styleClass="error"></h:message>
                                     </div>
-                                    <div class="form-group col-6">
+                                    <div class="form-group">
                                         <h:outputLabel for="wachtwoord" value="Wachtwoord:"/>
                                         <p:password id="wachtwoord" styleClass="form-control"
                                                     value="#{authController.newPersoon.wachtwoord}"
@@ -67,10 +65,10 @@
                                                     requiredMessage="Vul een wachtwoord in!"/>
                                         <h:message for="wachtwoord" styleClass="error"></h:message>
                                     </div>
-                                </div>
-                                <h:commandButton styleClass="btn btn-primary" value="Verzenden"
-                                                 action="#{authController.registreren}"/>
-                            </h:form>
+                                    <h:commandButton styleClass="btn btn-primary" value="Verzenden"
+                                                     action="#{authController.registreren}"/>
+                                </h:form>
+                            </div>
                         </div>
                     </div>
                 </div>

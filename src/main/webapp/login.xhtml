@@ -11,29 +11,27 @@
         <div class="mainpage">
             <div class="container">
                 <div class="row">
-                    <div class="card mt-5 mx-auto">
-                        <div class="card-body">
-                            <h3 class="card-title">Inloggen</h3>
-                            <c:if test="#{authController.errorMsg != ''}">
-                                <div class="alert alert-danger alert-dismissible">
-                                    #{authController.errorMsg}
-                                </div>
-                            </c:if>
+                    <div class="col-12 mt-3">
+                        <div class="card shadow" id="logincard">
+                            <div class="card-body">
+                                <h3 class="card-title">Inloggen</h3>
+                                <c:if test="#{authController.errorMsg != ''}">
+                                    <div class="alert alert-danger alert-dismissible">
+                                        #{authController.errorMsg}
+                                    </div>
+                                </c:if>
 
-                            <h:form id="zoekReisForm">
-                                <div class="form-row">
-                                    <div class="form-group col-12">
+                                <h:form id="loginForm">
+                                    <div class="form-group">
                                         <h:outputLabel for="email" value="E-mail:"/>
                                         <p:inputText id="email" styleClass="form-control"
                                                      value="#{authController.newPersoon.email}"
                                                      placeholder="E-mail" required="true"
                                                      requiredMessage="Geef een e-mailadres op!"/>
 
-                                        <h:message for="email" styleClass="error" ></h:message>
+                                        <h:message for="email" styleClass="error"></h:message>
                                     </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-12">
+                                    <div class="form-group">
                                         <h:outputLabel for="wachtwoord" value="Wachtwoord:"/>
                                         <p:password id="wachtwoord" styleClass="form-control"
                                                     value="#{authController.newPersoon.wachtwoord}"
@@ -41,15 +39,24 @@
                                                     requiredMessage="Vul een wachtwoord in!"/>
                                         <h:message for="wachtwoord" styleClass="error"></h:message>
                                     </div>
-                                </div>
-                                <h:commandButton styleClass="btn btn-primary" value="Aanmelden"
-                                                 action="#{authController.aanmelden}"/>
-                                <p class="mt-2">Or</p>
-                                <h:commandButton styleClass="btn btn-secondary" value="Registreren"
-                                                 action="registreren"/>
-                            </h:form>
+                                    <div class="form-row">
+                                        <div class="col-auto">
+                                            <h:commandButton styleClass="btn btn-primary" value="Aanmelden"
+                                                             action="#{authController.aanmelden}"/>
+                                        </div>
+                                        <div class="col-auto mx-auto">
+                                            <p>Or</p>
+                                        </div>
+                                        <div class="col-auto">
+                                            <h:commandButton styleClass="btn btn-secondary" value="Registreren"
+                                                             action="registreren"/>
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

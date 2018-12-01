@@ -1,14 +1,20 @@
 .mainpage{
     background: url("#{request.contextPath}/resources/images/travel.jpg") no-repeat center fixed;
     background-size: cover;
-    height: calc(100vh - 56px);
+    min-height: calc(100vh - 56px);
 }
 #filter-card{
+    width: 75vw;
+    max-width: 310px;
+}
+
+#logincard{
+    width: 75vw;
+    max-width: 310px;
     position: absolute;
     transform: translate(-50%, -50%);
-    left: 50vw;
-    top: 50vh;
-    padding: 1rem;
+    top: calc((50vh - 7.175rem));
+    left: 50%;
 }
 
 input{
