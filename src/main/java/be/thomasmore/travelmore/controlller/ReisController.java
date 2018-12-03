@@ -6,14 +6,17 @@ import be.thomasmore.travelmore.service.PersoonService;
 import be.thomasmore.travelmore.service.ReisService;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import java.util.List;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class ReisController {
     private Reis gezochteReis = new Reis();
+
+    private List<Reis> zoekResultaat;
 
     @Inject
     private ReisService reisService;
@@ -26,11 +29,22 @@ public class ReisController {
         this.gezochteReis = gezochteReis;
     }
 
+    public List<Reis> getZoekResultaat() {
+        return zoekResultaat;
+    }
+
+    public void setZoekResultaat(List<Reis> zoekResultaat) {
+        this.zoekResultaat = zoekResultaat;
+    }
+
     public List<Reis> getReizen(){
         return this.reisService.findAllReizen();
     }
 
-    public void zoekReis(){
-        gezochteReis = gezochteReis;
+    public String zoekReis(){
+
+        zoekResultaat = getReizen();
+
+        return "overzichtReizen";
     }
 }

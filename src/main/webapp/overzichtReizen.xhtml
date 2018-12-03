@@ -9,10 +9,99 @@
     <ui:define name="body">
         <div class="mainpage">
             <div class="container">
-                <div id="filter-card" class="card">
-                    <div class="card-body">
-
+                <div class="row">
+                    <div class="mx-auto my-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Uw gezochte reizen</h3>
+                                <h:form>
+                                    <div class="row">
+                                        <ui:repeat value="#{reisController.zoekResultaat}" var="reis">
+                                            <div class="col-12 col-md-6 my-2">
+                                                <div class="card shadow-sm">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-8">
+                                                                <h5 class="card-title">#{reis.aankomstLocatie.naam} (#{reis.aankomstLocatie.land.naam})</h5>
+                                                            </div>
+                                                            <div class="col-auto ml-auto">
+                                                                <b>
+                                                                    <h:outputText value="#{reis.prijs}">
+                                                                        <f:convertNumber currencyCode="EUR"
+                                                                                         type="currency"/>
+                                                                    </h:outputText>
+                                                                </b>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <p>Van
+                                                                    <h:outputText value="#{reis.vertrekDatum}">
+                                                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                                    </h:outputText>
+                                                                    tot
+                                                                    <h:outputText value="#{reis.vertrekDatum}">
+                                                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                                    </h:outputText>
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-12 col-lg-6">
+                                                                <div class="row">
+                                                                    <div class="col-6">
+                                                                        <p>Vertrek:
+                                                                            <br/>
+                                                                            <h:outputText value="#{reis.vertrekDatum}">
+                                                                                <f:convertDateTime
+                                                                                        pattern="dd/MM/yyyy"/>
+                                                                            </h:outputText>
+                                                                            <br/>
+                                                                            <h:outputText value="#{reis.vertrekDatum}">
+                                                                                <f:convertDateTime pattern="HH:mm"/>
+                                                                            </h:outputText>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="col-6">
+                                                                        <p>Aankomst:
+                                                                            <br/>
+                                                                            <h:outputText value="#{reis.aankomstDatum}">
+                                                                                <f:convertDateTime
+                                                                                        pattern="dd/MM/yyyy"/>
+                                                                            </h:outputText>
+                                                                            <br/>
+                                                                            <h:outputText value="#{reis.aankomstDatum}">
+                                                                                <f:convertDateTime pattern="HH:mm"/>
+                                                                            </h:outputText>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12 col-lg-6">
+                                                                <div class="row">
+                                                                    <div class="col-6 col-lg-12">
+                                                                        <p>Transportmiddel:
+                                                                            <br/>
+                                                                            #{reis.transportmiddel.naam}
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="col-6 col-lg-12">
+                                                                        <p>Aantal p.:
+                                                                            <br/>
+                                                                            #{reis.aantalPlaatsen}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <h:commandButton styleClass="btn btn-primary" action="index"
+                                                                         value="Boeken"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ui:repeat>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>

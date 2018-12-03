@@ -3,10 +3,6 @@
     background-size: cover;
     min-height: calc(100vh - 56px);
 }
-#filter-card{
-    width: 75vw;
-    max-width: 310px;
-}
 
 #logincard{
     width: 75vw;
@@ -23,4 +19,8 @@ input{
 
 .error{
     color: red !important;
+}
+
+.tijdInfo{
+    list-style-type: none;
 }
