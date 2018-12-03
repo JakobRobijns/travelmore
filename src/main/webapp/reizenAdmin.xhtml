@@ -9,44 +9,78 @@
     <ui:define name="body">
         <div class="mainpage">
             <div class="container">
-                <div id="filter-card" class="card">
-                    <div class="card-body">
-                        <h3 class="card-title">Reizen aanpassen/verwijderen</h3>
-                        <h:form>
-                            <h:dataTable value = "#{reisAdminController.reizen}" var = "reis">
-                                <h:column>
-                                    <f:facet name = "header">Datum</f:facet>
-                                    #{reis.vertrekDatum}
-                                </h:column>
+                <div class="row">
+                    <div class="mx-auto my-3">
+                        <div id="filter-card" class="card">
+                            <div class="card-body">
 
-                                <h:column>
-                                    <f:facet name = "header">Aantalplaatsen</f:facet>
-                                    #{reis.aantalPlaatsen}
-                                </h:column>
+                                <h:form>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <h3 class="card-title">Reizen aanpassen/verwijderen</h3>
+                                        </div>
+                                        <div class="col-4">
+                                            <h:commandButton value="Toevoegen" styleClass="btn btn-warning" style="float: right;"
+                                                             action="#{reisAdminController.ReisInsert}"/>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="row">
+                                        <ui:repeat value="#{reisAdminController.reizen}" var="reis">
 
-                                <h:column>
-                                    <f:facet name = "header">Prijs</f:facet>
-                                    #{reis.prijs}
-                                </h:column>
+                                            <div class="col-12 col-md-6 col-lg-6 my-2">
+                                                <div class="card shadow-sm">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                               <h5>${reis.vertrekLocatie.naam} -> #{reis.aankomstLocatie.naam}</h5>
+                                                            </div>
+                                                            <br/>
+                                                            <div class="col-12 col-lg-6">
+                                                                <b>Vertrek: </b>
+                                                                <h:outputText value="#{reis.vertrekDatum}">
+                                                                    <f:convertDateTime
+                                                                            pattern="dd/MM/yyyy HH:mm"/>
+                                                                </h:outputText>
+                                                                <br/>
+                                                                <b>Terug: </b>
+                                                                <h:outputText value="#{reis.aankomstDatum}">
+                                                                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                                                                </h:outputText>
+                                                            </div>
+                                                            <div class="col-12 col-lg-6">
+                                                                <p><b>Transport middel:</b> <br/>
+                                                                    ${reis.transportmiddel.naam}</p>
+                                                            </div>
 
-                                <h:column>
-                                    <f:facet name = "header">Vertrekdatum</f:facet>
-                                    #{reis.aankomstDatum}
-                                </h:column>
+                                                            <div class="col-12 col-lg-6">
+                                                                <p><b>Aantal plaatsen:</b> <br/>
+                                                                    ${reis.aantalPlaatsen}</p>
+                                                            </div>
+                                                            <div class="col-12 col-lg-6">
+                                                                <p><b>Prijs:</b> <br/>
+                                                                    ${reis.prijs} EUR</p>
+                                                            </div>
 
-                                <h:column>
-                                    <f:facet name = "header">Aanpassen</f:facet>
-                                    <h:commandButton value="Aanpassen" action="#{reisAdminController.ReisAanpassen(reis)}" />
-                                </h:column>
+                                                            <br/>
+                                                            <div class="col-12 col-lg-6">
+                                                                <h:commandButton value="Aanpassen" styleClass="btn btn-success"
+                                                                                 action="#{reisAdminController.ReisAanpassen(reis)}"/>
+                                                            </div>
+                                                            <div class="col-12 col-lg-6">
+                                                                <h:commandButton value="Verwijder" styleClass="btn btn-danger" style="float: right;"
+                                                                                 action="#{reisAdminController.ReisVerwijder(reis)}"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                <h:column>
-                                    <f:facet name = "header">Verwijder</f:facet>
-                                    <h:commandButton value="Verwijder" action="#{reisAdminController.ReisVerwijder(reis)}" />
-                                </h:column>
-
-                            </h:dataTable>
-                            <h:commandButton value="Toevoegen" action="#{reisAdminController.ReisInsert}" />
-                        </h:form>
+                                        </ui:repeat>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
