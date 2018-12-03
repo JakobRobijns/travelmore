@@ -17,13 +17,13 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <h:outputLabel for="vertrek" value="Vertrekplaats:"/>
-                                        <h:selectOneMenu styleClass="form-control" id="vertrek">
-                                            <f:selectItems value="#{indexController.locaties}" var="vertrek" itemValue="#{vertrek.id}" itemLabel="#{vertrek.naam} (#{vertrek.land.naam})" />
+                                        <h:selectOneMenu styleClass="form-control" id="vertrek" value="#{reisController.gezochteReis.vertrekLocatie.id}">
+                                            <f:selectItems value="#{reisController.locaties}" var="locatie" itemValue="#{locatie.id}" itemLabel="#{locatie.naam} (#{locatie.land.naam})" />
                                         </h:selectOneMenu>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <h:outputLabel for="bestemming" value="Bestemming:"/>
-                                        <h:selectOneMenu styleClass="form-control" id="bestemming">
+                                        <h:selectOneMenu styleClass="form-control" id="bestemming" value="#{reisController.gezochteReis.aankomstLocatie.id}">
                                             <f:selectItems value="#{indexController.locaties}" var="bestemming" itemValue="#{bestemming.id}" itemLabel="#{bestemming.naam} (#{bestemming.land.naam})" />
                                         </h:selectOneMenu>
                                     </div>

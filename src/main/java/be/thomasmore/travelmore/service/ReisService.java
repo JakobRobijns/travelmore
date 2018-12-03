@@ -14,12 +14,16 @@ public class ReisService {
     @Inject
     private ReisRepository reisRepository;
 
-    public Reis findLocationById(int id) {
+    public Reis findReisById(int id) {
         return reisRepository.findById(id);
     }
 
     public List<Reis> findAllReizen() {
         return reisRepository.findAll();
+    }
+
+    public List<Reis> zoekReizen(Reis reis) {
+        return reisRepository.zoekReizen(reis);
     }
 
     public void insert(Reis reis) {

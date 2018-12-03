@@ -10,12 +10,17 @@ import java.util.List;
         {
                 @NamedQuery(
                         name = Reis.FIND_ALL,
-                        query = "SELECT l FROM Reis l"
+                        query = "SELECT r FROM Reis r"
+                ),
+                @NamedQuery(
+                        name = Reis.ZOEK_REIZEN,
+                        query = "SELECT r FROM Reis r where r.vertrekLocatie.id = :vertrekLocatie"
                 )
         }
 )
 public class Reis {
     public static final String FIND_ALL = "Reis.findAll";
+    public static final String ZOEK_REIZEN = "Reis.zoekReizen";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,9 +30,9 @@ public class Reis {
     @Column(name = "aankomstDatum")
     private Date aankomstDatum;
     @ManyToOne
-    private Locatie vertrekLocatie;
+    private Locatie vertrekLocatie = new Locatie();
     @ManyToOne
-    private Locatie aankomstLocatie;
+    private Locatie aankomstLocatie = new Locatie();
     @ManyToOne
     private Transportmiddel transportmiddel;
     @Column(name = "prijs")
@@ -43,7 +48,6 @@ public class Reis {
         this.id = id;
     }
     public Reis(){
-
     }
     public Reis(Date vertrekdatum, Date aankomstdatum){
         vertrekDatum = vertrekdatum;
