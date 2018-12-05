@@ -28,7 +28,7 @@ public class Persoon {
     public static final String FIND_BY_MAIL = "Persoon.findByMail";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(name = "voornaam")
     private String voornaam;
