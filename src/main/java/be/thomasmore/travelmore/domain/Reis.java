@@ -11,10 +11,6 @@ import java.util.List;
                 @NamedQuery(
                         name = Reis.FIND_ALL,
                         query = "SELECT r FROM Reis r"
-                ),
-                @NamedQuery(
-                        name = Reis.ZOEK_REIZEN,
-                        query = "SELECT r FROM Reis r where r.vertrekLocatie.id = :vertrekLocatie"
                 )
         }
 )
@@ -50,6 +46,8 @@ public class Reis {
     public Reis(){
     }
     public Reis(Date vertrekdatum, Date aankomstdatum){
+        this.id = 0;
+
         vertrekDatum = vertrekdatum;
         aankomstDatum = aankomstdatum;
         Locatie tempVertrekLoc = new Locatie();
