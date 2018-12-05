@@ -1,6 +1,7 @@
 package be.thomasmore.travelmore.controlller;
 import be.thomasmore.travelmore.domain.Betaalmethode;
 import be.thomasmore.travelmore.domain.Boeking;
+import be.thomasmore.travelmore.domain.Persoon;
 import be.thomasmore.travelmore.domain.Reis;
 import be.thomasmore.travelmore.service.BetaalmethodeService;
 import be.thomasmore.travelmore.service.BoekingService;
@@ -20,6 +21,18 @@ public class BoekingController {
     private BoekingService boekingService;
     @Inject
     private BetaalmethodeService betaalmethodeService;
+    @Inject
+    private AuthController authController;
+
+    private int aantalPersonen;
+
+    public int getAantalPersonen() {
+        return aantalPersonen;
+    }
+
+    public void setAantalPersonen(int aantalPersonen) {
+        this.aantalPersonen = aantalPersonen;
+    }
 
     public Boeking getNewBoeking() { return newBoeking; }
 
@@ -30,7 +43,10 @@ public class BoekingController {
     }
 
     public String boekReis(Reis reis){
-        newBoeking.setReis(reis);
+
+        setNewBoeking(new Boeking(authController.getLogedinPersoon(),reis,5));
+
+        boekingService.insert(newBoeking);
         return "reisBoeken";
     }
 }

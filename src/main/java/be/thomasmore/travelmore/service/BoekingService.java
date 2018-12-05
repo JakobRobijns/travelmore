@@ -22,7 +22,8 @@ public class BoekingService {
         return boekingRepository.findAll();
     }
 
-    public void insert(Boeking boeking) {
+    public void insert(Boeking inBoeking) {
+        Boeking boeking = inBoeking;
         boekingRepository.insert(boeking);
     }
 }

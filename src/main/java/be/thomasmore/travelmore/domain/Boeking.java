@@ -27,6 +27,14 @@ public class Boeking {
     @Column(name = "aantal")
     private int aantal;
 
+    public Boeking(){}
+    public Boeking(Persoon persoon, Reis reis, int aantal){
+        this.persoon = persoon;
+        this.reis = reis;
+        this.aantal = aantal;
+        this.betaald = true;
+    }
+
     public int getId() {
         return id;
     }
