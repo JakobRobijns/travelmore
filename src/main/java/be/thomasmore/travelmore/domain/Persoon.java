@@ -44,8 +44,6 @@ public class Persoon {
     private String functie = "USER";
     @OneToMany(mappedBy = "persoon")
     private List<Boeking> boekingen = new ArrayList<>();
-    @ManyToMany(mappedBy = "personen")
-    private List<Betaalmethode> betaalmethodes = new ArrayList<>();
 
     public Persoon() {
     }
@@ -112,13 +110,5 @@ public class Persoon {
 
     public void setBoekingen(List<Boeking> boekingen) {
         this.boekingen = boekingen;
-    }
-
-    public List<Betaalmethode> getBetaalmethodes() {
-        return betaalmethodes;
-    }
-
-    public void setBetaalmethodes(List<Betaalmethode> betaalmethodes) {
-        this.betaalmethodes = betaalmethodes;
     }
 }

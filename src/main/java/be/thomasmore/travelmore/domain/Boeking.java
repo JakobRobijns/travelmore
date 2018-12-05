@@ -24,6 +24,16 @@ public class Boeking {
     private Reis reis;
     @Column(name = "betaald")
     private boolean betaald;
+    @Column(name = "aantal")
+    private int aantal;
+
+    public Boeking(){}
+    public Boeking(Persoon persoon, Reis reis, int aantal){
+        this.persoon = persoon;
+        this.reis = reis;
+        this.aantal = aantal;
+        this.betaald = true;
+    }
 
     public int getId() {
         return id;
@@ -55,5 +65,13 @@ public class Boeking {
 
     public void setBetaald(boolean betaald) {
         this.betaald = betaald;
+    }
+
+    public int getAantal() {
+        return aantal;
+    }
+
+    public void setAantal(int aantal) {
+        this.aantal = aantal;
     }
 }

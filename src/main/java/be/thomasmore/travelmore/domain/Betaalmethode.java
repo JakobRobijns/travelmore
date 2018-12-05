@@ -22,9 +22,6 @@ public class Betaalmethode {
     private int id;
     @Column(name = "naam")
     private String naam;
-    @ManyToMany
-    @JoinTable(name= "PersoonBetaalmethode")
-    private List<Persoon> personen = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -40,13 +37,5 @@ public class Betaalmethode {
 
     public void setNaam(String naam) {
         this.naam = naam;
-    }
-
-    public List<Persoon> getPersonen() {
-        return personen;
-    }
-
-    public void setPersonen(List<Persoon> personen) {
-        this.personen = personen;
     }
 }
