@@ -20,11 +20,12 @@
                                             <h3 class="card-title">Reizen aanpassen/verwijderen</h3>
                                         </div>
                                         <div class="col-4">
-                                            <h:commandButton value="Toevoegen" styleClass="btn btn-warning" style="float: right;"
+                                            <h:commandButton value="Toevoegen" styleClass="btn btn-warning"
+                                                             style="float: right;"
                                                              action="#{reisAdminController.ReisInsert}"/>
                                         </div>
                                     </div>
-                                   
+
                                     <div class="row">
                                         <ui:repeat value="#{reisAdminController.reizen}" var="reis">
 
@@ -33,7 +34,7 @@
                                                     <div class="card-body">
                                                         <div class="row">
                                                             <div class="col-12">
-                                                               <h5>${reis.vertrekLocatie.naam} -> #{reis.aankomstLocatie.naam}</h5>
+                                                                <h5>${reis.vertrekLocatie.naam} -> #{reis.aankomstLocatie.naam}</h5>
                                                             </div>
                                                             <br/>
                                                             <div class="col-12 col-lg-6">
@@ -63,12 +64,15 @@
                                                             </div>
 
                                                             <br/>
-                                                            <div class="col-12 col-lg-6">
-                                                                <h:commandButton value="Aanpassen" styleClass="btn btn-success"
+                                                            <div class="col-6">
+                                                                <h:commandButton value="Aanpassen"
+                                                                                 styleClass="btn btn-success"
                                                                                  action="#{reisAdminController.ReisAanpassen(reis)}"/>
                                                             </div>
-                                                            <div class="col-12 col-lg-6">
-                                                                <h:commandButton value="Verwijder" styleClass="btn btn-danger" style="float: right;"
+                                                            <div class="col-6">
+                                                                <h:commandButton value="Verwijder"
+                                                                                 styleClass="btn btn-danger"
+                                                                                 style="float: right;"
                                                                                  action="#{reisAdminController.ReisVerwijder(reis)}"/>
                                                             </div>
                                                         </div>
@@ -79,6 +83,16 @@
                                         </ui:repeat>
                                     </div>
                                 </h:form>
+
+                                <!--
+                                    button mail versturen test
+                                 -->
+                                <h:form>
+                                    <h:commandButton value="Send mail"
+                                                     action="${reisAdminController.Sendmail()}"
+                                                     styleClass="btn"/>
+                                </h:form>
+
                             </div>
                         </div>
                     </div>

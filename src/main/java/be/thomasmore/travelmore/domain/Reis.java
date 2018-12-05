@@ -50,6 +50,8 @@ public class Reis {
     public Reis(){
     }
     public Reis(Date vertrekdatum, Date aankomstdatum){
+        this.id = 0;
+
         vertrekDatum = vertrekdatum;
         aankomstDatum = aankomstdatum;
         Locatie tempVertrekLoc = new Locatie();
