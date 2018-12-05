@@ -24,6 +24,8 @@ public class Boeking {
     private Reis reis;
     @Column(name = "betaald")
     private boolean betaald;
+    @Column(name = "aantal")
+    private int aantal;
 
     public int getId() {
         return id;
@@ -55,5 +57,13 @@ public class Boeking {
 
     public void setBetaald(boolean betaald) {
         this.betaald = betaald;
+    }
+
+    public int getAantal() {
+        return aantal;
+    }
+
+    public void setAantal(int aantal) {
+        this.aantal = aantal;
     }
 }

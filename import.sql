@@ -86,24 +86,6 @@ INSERT INTO `locatie` (`id`, `naam`, `land_id`) VALUES
 (18, 'Kopenhagen', 7),
 (19, 'Aarhus', 7);
 
-
---
--- Gegevens worden geëxporteerd voor tabel `persoon`
---
-
-INSERT INTO `persoon` (`id`, `adres`, `email`, `functie`, `naam`, `voornaam`, `wachtwoord`) VALUES
-(1, '09 Lawn Pass', 'bgreasley1@census.gov', 'USER', 'Greasley', 'Boone', 'ddT1qHsF6ZF'),
-(2, '09 Lawn Pass', 'bgreasley1@census.gov', 'USER', 'Greasley', 'Boone', 'ddT1qHsF6ZF'),
-(3, '9323 Evergreen Avenue', 'sszymanzyk2@mediafire.com', 'USER', 'Szymanzyk', 'Stanton', 'COopY7j'),
-(4, '7 Bartillon Drive', 'ulainton3@privacy.gov.au', 'USER', 'Lainton', 'Ursula', 'rvD2XzsmjFJ'),
-(5, '86901 Hagan Court', 'spococke4@zdnet.com', 'USER', 'Pococke', 'Silvia', 'I0yeFNwHxHn9'),
-(6, '89781 Hooker Park', 'ltomlins5@nymag.com', 'USER', 'Tomlins', 'Lane', 'F06zcsG3Tbm'),
-(7, '109 Larry Circle', 'flagadu6@bandcamp.com', 'USER', 'Lagadu', 'Florance', 'RJyKGBQ'),
-(8, '973 Oak Valley Alley', 'mverryan7@bloomberg.com', 'USER', 'Verryan', 'Mora', 'c1ppUmhoHl'),
-(9, '451 Amoth Street', 'qyuryichev8@wired.com', 'USER', 'Yuryichev', 'Quinlan', 'lP5bJHgw21'),
-(10, '1702 Monument Terrace', 'beayrs9@deliciousdays.com', 'USER', 'Eayrs', 'Blanca', 'QxD8aMCP'),
-(21, 'Beheerstraat 4', 'admin@admin.com', 'USER', 'Beheerder', 'Admin', '21232f297a57a5a743894a0e4a801fc3');
-
 --
 -- Gegevens worden geëxporteerd voor tabel `reis`
 --
@@ -118,18 +100,6 @@ INSERT INTO `reis` (`id`, `aankomstDatum`, `aantalPlaatsen`, `prijs`, `vertrekDa
 --
 -- Gegevens worden geëxporteerd voor tabel `boeking`
 --
-
-INSERT INTO `boeking` (`id`, `betaald`, `persoon_id`, `reis_id`) VALUES
-(1, false, 2, 2);
-
-
-
---
--- Gegevens worden geëxporteerd voor tabel `persoonbetaalmethode`
---
-
-INSERT INTO `persoonbetaalmethode` (`betaalmethodes_id`, `personen_id`) VALUES
-(1, 1);
 
 
 
