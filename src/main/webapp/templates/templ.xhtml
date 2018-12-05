@@ -22,13 +22,13 @@
                     <li class="nav-item">
                         <h:commandLink class="nav-link" action="index">Zoeken</h:commandLink>
                     </li>
-                    <c:if test="#{authController.logedinPersoon.functie == 'ADMIN'}">
+                </ul>
+                <ul class="navbar-nav">
+                    <c:if test="#{authController.logedinPersoon.functie=='ADMIN'}">
                         <li class="nav-item">
                             <h:commandLink class="nav-link" action="reizenAdmin">Beheren</h:commandLink>
                         </li>
                     </c:if>
-                </ul>
-                <ul class="navbar-nav">
                     <c:if test="#{authController.logedinPersoon.email!=null}">
                         <li class="nav-item">
                             <span class="navbar-text">#{authController.logedinPersoon.email}</span>
@@ -39,7 +39,7 @@
                     </c:if>
                     <c:if test="#{authController.logedinPersoon.email==null}">
                         <li class="nav-item">
-                            <h:commandLink class="nav-link" action="login.xhtml">Aanmelden</h:commandLink>
+                            <h:commandLink class="nav-link" action="login">Aanmelden</h:commandLink>
                         </li>
                     </c:if>
                 </ul>
