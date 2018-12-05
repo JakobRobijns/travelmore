@@ -11,10 +11,6 @@ import java.util.List;
                 @NamedQuery(
                         name = Reis.FIND_ALL,
                         query = "SELECT r FROM Reis r"
-                ),
-                @NamedQuery(
-                        name = Reis.ZOEK_REIZEN,
-                        query = "SELECT r FROM Reis r where r.vertrekLocatie.id = :vertrekLocatie"
                 )
         }
 )
