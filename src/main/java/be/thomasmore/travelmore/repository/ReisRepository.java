@@ -5,6 +5,7 @@ import be.thomasmore.travelmore.domain.Reis;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Queue;
 
@@ -74,8 +75,25 @@ public class ReisRepository {
             }else{
                 queryString += " WHERE ";
             }
-            queryString += " DATE(r.aankomstDatum) =  " + reis.getAankomstDatum();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+            String formattedDate = formatter.format(reis.getAankomstDatum());
+            queryString += " r.aankomstDatum LIKE  '" + formattedDate + "%'";
         }
+
+        if (reis.getVertrekDatum() != null){
+            aantalQuery++;
+            if(aantalQuery > 1){
+                queryString += " AND ";
+            }else{
+                queryString += " WHERE ";
+            }
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+            String formattedDate = formatter.format(reis.getVertrekDatum());
+            queryString += " r.vertrekDatum LIKE  '" + formattedDate + "%'";
+        }
+
+
+
         Query query = entityManager.createQuery(queryString);
         return query.getResultList();
 

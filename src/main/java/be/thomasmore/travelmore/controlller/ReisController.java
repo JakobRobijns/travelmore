@@ -80,6 +80,7 @@ public class ReisController {
     }
 
     public void setToday(Date today) {
+
         this.today = today;
     }
 
