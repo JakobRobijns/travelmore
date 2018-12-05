@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="templates/templ.xhtml">
+    <ui:define name="body">
+        <div class="mainpage">
+            <div class="container">
+                <div id="filter-card" class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Boek een reis</h3>
+
+                        <h:form>
+                            <h:dataTable value="#{boekingController.reizen}" var="reis">
+
+                                <h:column>
+                                    <f:facet name="header" >Vertrek</f:facet>
+                                    #{reis.vertrekLocatie.naam}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header" >Vertrek Datum</f:facet>
+                                    #{reis.vertrekDatum}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header" >Aankomst</f:facet>
+                                    #{reis.aankomstLocatie.naam}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header" >Aankomst Datum</f:facet>
+                                    #{reis.aankomstDatum}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header" >Prijs</f:facet>
+                                    #{reis.prijs}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header" >Aantal plaatsen</f:facet>
+                                    #{reis.aantalPlaatsen}
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name = "header">Boeken</f:facet>
+                                    <h:commandButton value="Boek reis" action="#{boekingController.boekReis(reis)}" />
+                                </h:column>
+
+                            </h:dataTable>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

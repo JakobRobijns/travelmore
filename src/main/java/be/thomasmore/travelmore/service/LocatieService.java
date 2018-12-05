@@ -32,4 +32,6 @@ public class LocatieService {
     public void insert(Locatie locatie) {
         locatieRepository.insert(locatie);
     }
+
+
 }

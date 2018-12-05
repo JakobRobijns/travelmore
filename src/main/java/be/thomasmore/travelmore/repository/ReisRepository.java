@@ -20,17 +20,69 @@ public class ReisRepository {
         return entityManager.createNamedQuery(Reis.FIND_ALL, Reis.class).getResultList();
     }
 
+
     public List<Reis> zoekReizen(Reis reis) {
         String queryString = "Select r from Reis r";
+        int aantalQuery = 0;
         if (reis.getVertrekLocatie().getId() != 0){
-            queryString += " Where r.vertrekLocatie.id = " + reis.getVertrekLocatie().getId();
+            aantalQuery++;
+            queryString += " WHERE r.vertrekLocatie.id = " + reis.getVertrekLocatie().getId();
         }
         if (reis.getAankomstLocatie().getId() != 0){
-            queryString += " And r.aankomstLocatie.id = " + reis.getAankomstLocatie().getId();
+            aantalQuery++;
+            if(aantalQuery > 1){
+                queryString += " AND ";
+            }else{
+                queryString += " WHERE ";
+            }
+            queryString += " r.aankomstLocatie.id = " + reis.getAankomstLocatie().getId();
+        }
+        if(reis.getTransportmiddel() != null){
+            if (reis.getTransportmiddel().getId() != 0){
+                aantalQuery++;
+                if(aantalQuery > 1){
+                    queryString += " AND ";
+                }else{
+                    queryString += " WHERE ";
+                }
+                queryString += " r.transportmiddel.id = " + reis.getTransportmiddel().getId();
+            }
+        }
+        if (reis.getPrijs() != 0){
+            aantalQuery++;
+            if(aantalQuery > 1){
+                queryString += " AND ";
+            }else{
+                queryString += " WHERE ";
+            }
+            queryString += " r.prijs <= " + reis.getPrijs();
+        }
+        if (reis.getAantalPlaatsen() != 0){
+            aantalQuery++;
+            if(aantalQuery > 1){
+                queryString += " AND ";
+            }else{
+                queryString += " WHERE ";
+            }
+            queryString += " r.aantalPlaatsen >= " + reis.getAantalPlaatsen();
+        }
+
+        if (reis.getAankomstDatum() != null){
+            aantalQuery++;
+            if(aantalQuery > 1){
+                queryString += " AND ";
+            }else{
+                queryString += " WHERE ";
+            }
+            queryString += " DATE(r.aankomstDatum) =  " + reis.getAankomstDatum();
         }
         Query query = entityManager.createQuery(queryString);
         return query.getResultList();
+
     }
+
+
+
 
     public void insert(Reis reis) {
         entityManager.persist(reis);

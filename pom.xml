@@ -17,14 +17,12 @@
             <artifactId>primefaces</artifactId>
             <version>6.1</version>
         </dependency>
-<<<<<<< HEAD
-=======
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
         </dependency>
->>>>>>> parent of 24181a5... pom.xml update
+
     </dependencies>
     <build>
         <finalName>travelmore</finalName>

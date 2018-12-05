@@ -8,11 +8,18 @@ import be.thomasmore.travelmore.service.LocatieService;
 import be.thomasmore.travelmore.service.PersoonService;
 import be.thomasmore.travelmore.service.ReisService;
 import be.thomasmore.travelmore.service.TransportmiddelService;
+import org.primefaces.context.RequestContext;
+import org.primefaces.event.SelectEvent;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -28,6 +35,8 @@ public class ReisController {
     private Reis gezochteReis = new Reis();
 
     private List<Reis> zoekResultaat;
+
+    private Date today = new Date();
 
     @Inject
     private ReisService reisService;
@@ -66,6 +75,14 @@ public class ReisController {
         this.zoekResultaat = zoekResultaat;
     }
 
+    public Date getToday() {
+        return today;
+    }
+
+    public void setToday(Date today) {
+        this.today = today;
+    }
+
     public List<Reis> getReizen(){
         return this.reisService.findAllReizen();
     }
@@ -75,4 +92,5 @@ public class ReisController {
 
         return "overzichtReizen";
     }
+
 }

@@ -24,4 +24,8 @@ public class LandService {
     public void insert(Land land) {
         landRepository.insert(land);
     }
+
+    public void delete(int id) {
+        landRepository.delete(id);
+    }
 }

@@ -21,4 +21,10 @@ public class LandRepository {
     public void insert(Land land) {
         entityManager.persist(land);
     }
+
+    public void delete(int id){
+        entityManager.createQuery("delete from Land l where l.id=:id")
+                .setParameter("id", id)
+                .executeUpdate();
+    }
 }
