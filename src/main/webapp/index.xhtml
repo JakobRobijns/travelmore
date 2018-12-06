@@ -18,56 +18,34 @@
                                     <div class="form-group col-md-6">
                                         <h:outputLabel for="vertrek" value="Vertrekplaats:"/>
                                         <h:selectOneMenu styleClass="form-control" id="vertrek" value="#{reisController.gezochteReis.vertrekLocatie.id}">
-                                            <f:selectItem itemLabel="- Selecteer een vertrekplaats -"/>
+                                            <f:selectItem itemLabel="Alle vertrekplaatsen"/>
                                             <f:selectItems value="#{reisController.locaties}" var="locatie" itemValue="#{locatie.id}" itemLabel="#{locatie.naam} (#{locatie.land.naam})" />
                                         </h:selectOneMenu>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <h:outputLabel for="bestemming" value="Bestemming:"/>
                                         <h:selectOneMenu styleClass="form-control" id="bestemming" value="#{reisController.gezochteReis.aankomstLocatie.id}">
-                                            <f:selectItem itemLabel="- Selecteer een bestemming -"/>
+                                            <f:selectItem itemLabel="Alle bestemmingen"/>
                                             <f:selectItems value="#{indexController.locaties}" var="bestemming" itemValue="#{bestemming.id}" itemLabel="#{bestemming.naam} (#{bestemming.land.naam})" />
                                         </h:selectOneMenu>
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-6">
                                         <h:outputLabel for="vanDatum" value="Van:"/><br/>
                                         <p:calendar id="vanDatum" value="#{reisController.gezochteReis.vertrekDatum}"
-                                                    placeholder="dd/mm/yyyy"/>
+                                                    placeholder="dd/mm/yyyy"
+                                                    pattern="dd/mm/yyyy"  mask="true">
+                                        </p:calendar>
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-6">
                                         <h:outputLabel for="totDatum" value="Tot:" /><br/>
                                         <p:calendar id="totDatum" value="#{reisController.gezochteReis.aankomstDatum}"
-                                                    placeholder="dd/mm/yyyy"/>
+                                                    placeholder="dd/mm/yyyy"
+                                                    pattern="dd/mm/yyyy"  mask="true">
+                                        </p:calendar>
                                     </div>
                                 </div>
-                                <!--<div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <h:outputLabel for="aantal" value="Aantal:"/>
-                                        <p:inputText id="aantal" styleClass="form-control" value="#{reisController.gezochteReis.aantalPlaatsen}"
-                                                     placeholder="Aantal pers."/>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <h:outputLabel for="maxPrijs" value="Max prijs:"/>
-                                        <p:inputText id="maxPrijs" styleClass="form-control" value="#{reisController.gezochteReis.prijs}"
-                                                     placeholder="Max prijs"/>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <h:outputLabel for="vervoer" value="Vervoer:"/>
-                                        <h:selectOneMenu styleClass="form-control" id="vervoer">
-                                            <f:selectItems value="#{indexController.transportmiddelen}" var="middel" itemValue="#{middel.id}" itemLabel="#{middel.naam}" />
-                                        </h:selectOneMenu>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-12">
-                                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-                                        </h:panelGrid>
-                                    </div>
-                                </div>-->
                                 <h:commandButton styleClass="btn btn-primary" value="Zoeken"
                                                  action="#{reisController.zoekReis}"/>
                             </h:form>
