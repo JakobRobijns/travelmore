@@ -46,7 +46,7 @@ public class BoekingController {
 
         setNewBoeking(new Boeking(authController.getLogedinPersoon(),reis,5));
 
-        boekingService.insert(newBoeking);
+        // boekingService.insert(newBoeking);
         return "reisBoeken";
     }
 }
