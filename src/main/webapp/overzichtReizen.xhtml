@@ -35,16 +35,13 @@
                                     <div class="form-group col-6">
                                         <h:outputLabel for="vanDatum" value="Van:"/><br/>
                                         <p:calendar id="vanDatum" value="#{reisController.gezochteReis.vertrekDatum}"
-                                                    placeholder="dd/mm/yyyy" mindate="#{reisController.today}"
+                                                    placeholder="dd/mm/yyyy"
                                                     pattern="dd/mm/yyyy"  mask="true">
-                                            <f:convertDateTime pattern="dd/mm/yyyy"/>
                                         </p:calendar>
                                         <h:outputLabel for="totDatum" value="Tot:" /><br/>
                                         <p:calendar id="totDatum" value="#{reisController.gezochteReis.aankomstDatum}"
-                                                    placeholder="dd/mm/yyyy" mindate="#{reisController.today}"
+                                                    placeholder="dd/mm/yyyy"
                                                     pattern="dd/mm/yyyy"  mask="true">
-                                            <f:convertDateTime pattern="dd/mm/yyyy"/>
-
                                         </p:calendar>
                                     </div>
                                 </div>
@@ -76,7 +73,7 @@
 
 
 
-                        <div class="card my-3" style="background:rgba(255,255,255,0.6)">
+                        <div class="card my-3" style="background:rgba(255,255,255,0.8)">
                             <div class="card-body">
                                 <h3 class="card-title">Uw gezochte reizen</h3>
                                 <h:form>

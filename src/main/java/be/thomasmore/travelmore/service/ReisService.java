@@ -6,6 +6,7 @@ import be.thomasmore.travelmore.repository.ReisRepository;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.Date;
 import java.util.List;
 
 @Stateless
@@ -20,6 +21,10 @@ public class ReisService {
 
     public List<Reis> findAllReizen() {
         return reisRepository.findAll();
+    }
+
+    public List<Reis> test(Date vertrekDatum) {
+        return reisRepository.test(vertrekDatum);
     }
 
     public List<Reis> zoekReizen(Reis reis) {

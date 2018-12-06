@@ -36,8 +36,6 @@ public class ReisController {
 
     private List<Reis> zoekResultaat;
 
-    private Date today = new Date();
-
     @Inject
     private ReisService reisService;
     @Inject
@@ -48,7 +46,6 @@ public class ReisController {
     public void init() {
         this.locaties = this.getLocaties();
         this.transportmiddelen = this.getTransportmiddelen();
-        this.zoekResultaat = this.getReizen();
     }
 
     public List<Locatie> getLocaties(){
@@ -75,22 +72,13 @@ public class ReisController {
         this.zoekResultaat = zoekResultaat;
     }
 
-    public Date getToday() {
-        return today;
-    }
-
-    public void setToday(Date today) {
-
-        this.today = today;
-    }
-
     public List<Reis> getReizen(){
         return this.reisService.findAllReizen();
     }
 
     public String zoekReis(){
         zoekResultaat = this.reisService.zoekReizen(gezochteReis);
-
+        // zoekResultaat = this.reisService.test(gezochteReis.getVertrekDatum());
         return "overzichtReizen";
     }
 

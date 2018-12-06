@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Queue;
 
@@ -21,6 +22,9 @@ public class ReisRepository {
         return entityManager.createNamedQuery(Reis.FIND_ALL, Reis.class).getResultList();
     }
 
+    public List<Reis> test(Date vertrekDatum) {
+        return entityManager.createNamedQuery(Reis.ZOEK_REIZEN, Reis.class).setParameter("vertrekDatum", vertrekDatum).getResultList();
+    }
 
     public List<Reis> zoekReizen(Reis reis) {
         String queryString = "Select r from Reis r";

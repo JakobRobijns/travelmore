@@ -11,6 +11,10 @@ import java.util.List;
                 @NamedQuery(
                         name = Reis.FIND_ALL,
                         query = "SELECT r FROM Reis r"
+                ),
+                @NamedQuery(
+                        name = Reis.ZOEK_REIZEN,
+                        query = "SELECT r FROM Reis r where r.vertrekDatum = :vertrekDatum"
                 )
         }
 )
@@ -43,9 +47,11 @@ public class Reis {
     public void setId(int id) {
         this.id = id;
     }
-    public Reis(){
+
+    public Reis() {
     }
-    public Reis(Date vertrekdatum, Date aankomstdatum){
+
+    public Reis(Date vertrekdatum, Date aankomstdatum) {
         this.id = 0;
 
         vertrekDatum = vertrekdatum;
