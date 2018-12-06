@@ -34,7 +34,7 @@ public class Reis {
     @ManyToOne
     private Locatie aankomstLocatie = new Locatie();
     @ManyToOne
-    private Transportmiddel transportmiddel;
+    private Transportmiddel transportmiddel = new Transportmiddel();
     @Column(name = "prijs")
     private float prijs;
     @Column(name = "aantalPlaatsen")

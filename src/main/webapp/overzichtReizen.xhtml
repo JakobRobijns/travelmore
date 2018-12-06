@@ -60,10 +60,11 @@
                                     </div>
                                     <div class="form-group col-sm-3 col-4">
                                         <h:outputLabel for="transport" value="Transportmiddel:" />
-                                        <h:selectOneMenu styleClass="form-control" id="transport"  >
+                                        <h:selectOneMenu styleClass="form-control" id="transport"
+                                                         value="#{reisController.gezochteReis.transportmiddel.id}" >
+                                            <f:selectItem itemLabel="Alle middelen"/>
                                             <f:selectItems value="#{reisController.transportmiddelen}" var="transportmiddel" itemValue="#{transportmiddel.id}" itemLabel="#{transportmiddel.naam}" />
                                         </h:selectOneMenu>
-<!-- value="#{reisController.gezochteReis.transportmiddel.id}"-->
                                     </div>
                                     <div class="form-group col-sm-3 col-4 m-auto">
                                         <h:commandButton styleClass="btn btn-primary" value="Zoeken"
