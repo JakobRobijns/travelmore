@@ -28,10 +28,10 @@ public class Boeking {
     private int aantal;
 
     public Boeking(){}
-    public Boeking(Persoon persoon, Reis reis, int aantal){
+    public Boeking(Persoon persoon, Reis reis){
+        this.id = 0;
         this.persoon = persoon;
         this.reis = reis;
-        this.aantal = aantal;
         this.betaald = true;
     }
 

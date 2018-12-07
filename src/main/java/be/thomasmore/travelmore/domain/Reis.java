@@ -1,6 +1,7 @@
 package be.thomasmore.travelmore.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -35,6 +36,8 @@ public class Reis {
     private Locatie aankomstLocatie = new Locatie();
     @ManyToOne
     private Transportmiddel transportmiddel = new Transportmiddel();
+    @OneToMany(mappedBy = "reis")
+    private List<Boeking> boekingreis = new ArrayList<>();
     @Column(name = "prijs")
     private float prijs;
     @Column(name = "aantalPlaatsen")
@@ -122,5 +125,13 @@ public class Reis {
 
     public void setAantalPlaatsen(int aantalPlaatsen) {
         this.aantalPlaatsen = aantalPlaatsen;
+    }
+
+    public List<Boeking> getBoekingreis() {
+        return boekingreis;
+    }
+
+    public void setBoekingreis(List<Boeking> boekingreis) {
+        this.boekingreis = boekingreis;
     }
 }

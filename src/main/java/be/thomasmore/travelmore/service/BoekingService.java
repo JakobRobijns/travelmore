@@ -23,7 +23,7 @@ public class BoekingService {
     }
 
     public void insert(Boeking inBoeking) {
-        Boeking boeking = inBoeking;
-        boekingRepository.insert(boeking);
+        //Boeking boeking = inBoeking;
+        boekingRepository.insert(inBoeking);
     }
 }

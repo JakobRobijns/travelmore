@@ -23,6 +23,9 @@ public class Betaalmethode {
     @Column(name = "naam")
     private String naam;
 
+    public Betaalmethode() {
+    }
+
     public int getId() {
         return id;
     }
