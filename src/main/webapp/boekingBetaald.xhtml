@@ -9,13 +9,17 @@
     <ui:define name="body">
         <div class="mainpage">
             <div class="container">
-                <div id="filter-card" class="card">
-                    <div class="card-body">
-                        <h3 class="card-title">Uw boeking is betaald!</h3>
-                        <p>Beste #{authController.logedinPersoon.naam},</p>
-                        <p>Hieronder kan u uw reis documenten afdrukken.</p>
-                        <h:commandButton styleClass="btn btn-primary" value="Afdrukken"
-                                         action="index"/>
+                <div class="row">
+                    <div class="card col-12 my-3">
+                        <div class="card-body">
+                            <h3 class="card-title">Uw boeking is betaald!</h3>
+                            <p>Beste #{authController.logedinPersoon.voornaam},</p>
+                            <p>Er werd een mail gestuurd met de bevesteging.</p>
+                            <h:form>
+                                <h:commandButton styleClass="btn btn-primary" value="Terug"
+                                                 action="index"/>
+                            </h:form>
+                        </div>
                     </div>
                 </div>
             </div>

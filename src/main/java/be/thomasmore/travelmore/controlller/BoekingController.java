@@ -31,19 +31,9 @@ public class BoekingController {
     private BetaalmethodeService betaalmethodeService;
     @Inject
     private AuthController authController;
+
     //betaalmethode opslaan (alleen voor mail)
-    @Inject
     private Betaalmethode betaalmethod = new Betaalmethode();
-
-    private int aantalPersonen; // niet nodig
-
-    // un-used code
-    public int getAantalPersonen() {
-        return aantalPersonen;
-    }
-    public void setAantalPersonen(int aantalPersonen) {
-        this.aantalPersonen = aantalPersonen;
-    }
 
     public Betaalmethode getBetaalmethod() {
         return betaalmethod;
@@ -69,22 +59,24 @@ public class BoekingController {
 
     public String boekReisOpslaan(Persoon persoon){
         newBoeking.setPersoon(persoon);
+        newBoeking.getReis().setPrijs(newBoeking.getReis().getPrijs()*newBoeking.getAantal());
+
         //Boeking opslaan in database
         boekingService.insert(newBoeking);
 
         //mail verzenden
-        Sendmail();
+        Sendmail(persoon.getEmail());
 
         //Boeking leegmaken
         newBoeking = new Boeking();
 
-        return "overzichtReizen";
+        return "boekingBetaald";
     }
 
     // send email
-    public void Sendmail() {
+    public void Sendmail(String email) {
         // Recipient's email ID needs to be mentioned.
-        String to = "thibautjoukes@gmail.com";
+        String to = email;
 
 
         String host = "smtp.gmail.com";
@@ -117,9 +109,9 @@ public class BoekingController {
 
             // set content and define type
             message.setContent("Proficiat met de boeking van je reis voor <b>"+getNewBoeking().getAantal()+"</b> personen. " +
-                    "<br/><br/> Je zal vertrekken op" + getNewBoeking().getReis().getVertrekDatum().toString() +
+                    "<br/><br/> Je zal vertrekken op " + getNewBoeking().getReis().getVertrekDatum().toString() +
                     " en aankomen op "+ getNewBoeking().getReis().getAankomstDatum().toString() +
-                    "<br/><br/> Betaalmethode: "+ betaalmethod.getNaam() +" <br/> Veel plezier!", "text/html; charset=utf-8");
+                    "<br/><br/> U betaalde: €"+getNewBoeking().getReis().getPrijs()+" met "+ betaalmethod.getNaam() +" <br/> Veel plezier!", "text/html; charset=utf-8");
 
             Transport transport = session.getTransport("smtp");
             transport.connect(host, from, pass);
