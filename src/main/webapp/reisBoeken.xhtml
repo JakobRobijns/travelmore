@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="templates/templ.xhtml">
+    <ui:define name="body">
+        <div class="mainpage">
+            <div class="container">
+                <div class="row">
+                    <div class="card col-12 my-3">
+                        <div class="card-body">
+                            <h3 class="card-title mt-2">Boek uw reis</h3>
+                            <p>Beste #{authController.logedinPersoon.voornaam},</p>
+                            <p>Hieronder kan u uw reis naar #{boekingController.newBoeking.reis.aankomstLocatie.naam} boeken.</p>
+                            <p>Uw reisgegevens</p>
+                            <div class="row">
+                                <div class="col-auto">
+                                    <p><b>Vertrek:</b>
+                                        <br/>
+                                        #{boekingController.newBoeking.reis.vertrekLocatie.naam} (#{boekingController.newBoeking.reis.vertrekLocatie.land.naam})
+                                        <br/>
+                                        <h:outputText
+                                                value="#{boekingController.newBoeking.reis.vertrekDatum}">
+                                            <f:convertDateTime
+                                                    pattern="dd/MM/yyyy"/>
+                                        </h:outputText>
+                                        <br/>
+                                        <h:outputText
+                                                value="#{boekingController.newBoeking.reis.vertrekDatum}">
+                                            <f:convertDateTime pattern="HH:mm"/>
+                                        </h:outputText>
+                                    </p>
+                                </div>
+                                <div class="col-auto">
+                                    <p><b>Aankomst:</b>
+                                        <br/>
+                                        #{boekingController.newBoeking.reis.aankomstLocatie.naam} (#{boekingController.newBoeking.reis.aankomstLocatie.land.naam})
+                                        <br/>
+                                        <h:outputText
+                                                value="#{boekingController.newBoeking.reis.aankomstDatum}">
+                                            <f:convertDateTime
+                                                    pattern="dd/MM/yyyy"/>
+                                        </h:outputText>
+                                        <br/>
+                                        <h:outputText
+                                                value="#{boekingController.newBoeking.reis.aankomstDatum}">
+                                            <f:convertDateTime pattern="HH:mm"/>
+                                        </h:outputText>
+                                    </p>
+                                </div>
+                            </div>
+                            <h:form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <h:outputLabel for="betaalMethode" value="Betaalmethode:"/>
+                                        <h:selectOneMenu styleClass="form-control" id="betaalMethode"
+                                                         value="${boekingController.betaalmethod.naam}">
+                                            <f:selectItems value="#{boekingController.getAllBetaalmethodes()}" var="betaalmethod"
+                                                           itemValue="#{betaalmethod.naam}" itemLabel="#{betaalmethod.naam}"/>
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <h:outputLabel for="aantalpersonen" value="Aantal personen:"/>
+                                        <h:inputText value="${boekingController.newBoeking.aantal}" id="aantalpersonen"
+                                                     class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <h:commandLink styleClass="btn btn-primary"
+                                                       action="overzichtReizen">Terug</h:commandLink>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <div class="float-right">
+                                            <div class="row">
+                                                <b>€ #{boekingController.newBoeking.reis.prijs} p.p.</b>
+
+                                                <h:commandButton styleClass="ml-2 btn btn-primary" value="Betalen"
+                                                                 action="${boekingController.boekReisOpslaan(authController.getLogedinPersoon())}"/>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </h:form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

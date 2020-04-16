@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<ui:composition template="templates/templ.xhtml">
+    <ui:define name="body">
+        <div class="mainpage">
+            <div class="container">
+                <div class="row">
+                    <div class="mx-auto my-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <c:if test="#{authController.logedinPersoon.functie=='ADMIN'}">
+                                    <h:form>
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <h3 class="card-title">Reizen aanpassen/verwijderen</h3>
+                                            </div>
+                                            <div class="col-4">
+                                                <h:commandButton value="Toevoegen" styleClass="btn btn-warning"
+                                                                 style="float: right;"
+                                                                 action="#{reisAdminController.ReisInsert}"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <ui:repeat value="#{reisAdminController.reizen}" var="reis">
+
+                                                <div class="col-12 col-md-6 col-lg-6 my-2">
+                                                    <div class="card shadow-sm">
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <h5>${reis.vertrekLocatie.naam} -> #{reis.aankomstLocatie.naam}</h5>
+                                                                </div>
+                                                                <br/>
+                                                                <div class="col-12 col-lg-6">
+                                                                    <b>Vertrek: </b>
+                                                                    <h:outputText value="#{reis.vertrekDatum}">
+                                                                        <f:convertDateTime
+                                                                                pattern="dd/MM/yyyy HH:mm"/>
+                                                                    </h:outputText>
+                                                                    <br/>
+                                                                    <b>Terug: </b>
+                                                                    <h:outputText value="#{reis.aankomstDatum}">
+                                                                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                                                                    </h:outputText>
+                                                                </div>
+                                                                <div class="col-12 col-lg-6">
+                                                                    <p><b>Transport middel:</b> <br/>
+                                                                        ${reis.transportmiddel.naam}</p>
+                                                                </div>
+
+                                                                <div class="col-12 col-lg-6">
+                                                                    <p><b>Aantal plaatsen:</b> <br/>
+                                                                        ${reis.aantalPlaatsen}</p>
+                                                                </div>
+                                                                <div class="col-12 col-lg-6">
+                                                                    <p><b>Prijs:</b> <br/>
+                                                                        ${reis.prijs} EUR</p>
+                                                                </div>
+
+                                                                <br/>
+                                                                <div class="col-6">
+                                                                    <h:commandButton value="Aanpassen"
+                                                                                     styleClass="btn btn-success"
+                                                                                     action="#{reisAdminController.ReisAanpassen(reis)}"/>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <h:commandButton value="Verwijder"
+                                                                                     styleClass="btn btn-danger"
+                                                                                     style="float: right;"
+                                                                                     action="#{reisAdminController.ReisVerwijder(reis)}"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </ui:repeat>
+                                        </div>
+                                    </h:form>
+                                </c:if>
+                                <c:if test="#{authController.logedinPersoon.functie!='ADMIN'}">
+                                    <h3>U heeft geen toegang tot deze pagina!</h3>
+                                </c:if>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

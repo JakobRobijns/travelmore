@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="templates/templ.xhtml">
+    <ui:define name="body">
+        <div class="mainpage">
+            <div class="container">
+                <div class="row">
+                    <div class="card mx-auto my-3">
+                        <div class="card-body">
+                            <h3 class="card-title">Zoek een reis</h3>
+                            <h:form id="zoekReisForm">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <h:outputLabel for="vertrek" value="Vertrekplaats:"/>
+                                        <h:selectOneMenu styleClass="form-control" id="vertrek" value="#{reisController.gezochteReis.vertrekLocatie.id}">
+                                            <f:selectItem itemLabel="Alle vertrekplaatsen"/>
+                                            <f:selectItems value="#{reisController.locaties}" var="locatie" itemValue="#{locatie.id}" itemLabel="#{locatie.naam} (#{locatie.land.naam})" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <h:outputLabel for="bestemming" value="Bestemming:"/>
+                                        <h:selectOneMenu styleClass="form-control" id="bestemming" value="#{reisController.gezochteReis.aankomstLocatie.id}">
+                                            <f:selectItem itemLabel="Alle bestemmingen"/>
+                                            <f:selectItems value="#{indexController.locaties}" var="bestemming" itemValue="#{bestemming.id}" itemLabel="#{bestemming.naam} (#{bestemming.land.naam})" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-6">
+                                        <h:outputLabel for="vanDatum" value="Van:"/><br/>
+                                        <p:calendar id="vanDatum" value="#{reisController.gezochteReis.vertrekDatum}"
+                                                    placeholder="dd/mm/yyyy"
+                                                    pattern="dd/mm/yyyy"  mask="true">
+                                        </p:calendar>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <h:outputLabel for="totDatum" value="Tot:" /><br/>
+                                        <p:calendar id="totDatum" value="#{reisController.gezochteReis.aankomstDatum}"
+                                                    placeholder="dd/mm/yyyy"
+                                                    pattern="dd/mm/yyyy"  mask="true">
+                                        </p:calendar>
+                                    </div>
+                                </div>
+                                <h:commandButton styleClass="btn btn-primary" value="Zoeken"
+                                                 action="#{reisController.zoekReis()}"/>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

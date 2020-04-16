@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<ui:composition template="templates/templ.xhtml">
+    <ui:define name="body">
+        <div class="mainpage">
+            <div class="container">
+                <div class="row">
+                    <div class="mx-auto my-3">
+                        <div id="filter-card" class="card">
+                            <div class="card-body">
+                                <c:if test="#{authController.logedinPersoon.functie=='ADMIN'}">
+                                    <h:form>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <c:if test="#{not empty reisAdminController.reis.vertrekLocatie.land.naam}">
+                                                    <h3 class="card-title">Reis aanpassen van #{reisAdminController.reis.vertrekLocatie.land.naam} naar #{reisAdminController.reis.aankomstLocatie.land.naam}</h3>
+                                                </c:if>
+                                                <c:if test="#{empty reisAdminController.reis.vertrekLocatie.land.naam}">
+                                                    <h3 class="card-title">Reis invullen.</h3>
+                                                </c:if>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-12 col-lg-6 form-group">
+                                                <h:outputLabel value="VertrekDatum" for="vertrekdatum"/>
+                                                <h:inputText value="#{reisAdminController.reis.vertrekDatum}"
+                                                             id="vertrekdatum"
+                                                             class="form-control"
+                                                             a:placeholder="yyyy-MM-dd HH:mm:ss">
+                                                    <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss"/>
+                                                </h:inputText>
+                                            </div>
+                                            <div class="col-12 col-lg-6 form-group">
+                                                <h:outputLabel value="AankomstDatum" for="aankomstdatum"/>
+                                                <h:inputText value="#{reisAdminController.reis.aankomstDatum}"
+                                                             class="form-control"
+                                                             id="aankomstdatum" a:placeholder="yyyy-MM-dd HH:mm:ss">
+                                                    <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss"/>
+                                                </h:inputText>
+                                            </div>
+
+                                            <div class="col-12 col-lg-6 form-group">
+                                                <h:outputLabel value="AantalPlaatsen" for="aantalplaatsen"/>
+                                                <h:inputText value="#{reisAdminController.reis.aantalPlaatsen}"
+                                                             class="form-control"
+                                                             id="aantalplaatsen"/>
+                                            </div>
+                                            <div class="col-12 col-lg-6 form-group">
+                                                <h:outputLabel value="Prijs" for="prijs"/>
+                                                <h:inputText value="#{reisAdminController.reis.prijs}" id="prijs"
+                                                             class="form-control">
+                                                    <f:convertNumber minFractionDigits="2"/>
+                                                </h:inputText>
+                                            </div>
+
+                                            <div class="col-12 col-lg-6 form-group">
+                                                <h:outputLabel value="VertrekLocatie" for="vertrekLocatie"/>
+                                                <h:selectOneMenu value="#{reisAdminController.reis.vertrekLocatie.id}"
+                                                                 class="form-control"
+                                                                 id="vertrekLocatie">
+                                                    <f:selectItem itemLabel="- Selecteer een bestemming -"/>
+
+                                                    <c:if test="#{empty reisAdminController.reis.vertrekLocatie.naam}">
+                                                        <f:selectItems value="#{reisAdminController.locaties}"
+                                                                       class="form-control" var="land"
+                                                                       itemValue="#{land.id}" itemLabel="#{land.naam}"/>
+                                                    </c:if>
+
+                                                    <c:if test="#{not empty reisAdminController.reis.vertrekLocatie.naam}">
+                                                        <f:selectItems
+                                                                value="#{reisAdminController.getVertrektLocatiesWithReis()}"
+                                                                var="land" itemValue="#{land.id}"
+                                                                itemLabel="#{land.naam}"/>
+                                                    </c:if>
+                                                </h:selectOneMenu>
+                                            </div>
+
+                                            <div class="col-12 col-lg-6 form-group">
+                                                <h:outputLabel value="AankomstLocatie" for="aankomstlocatie"/>
+                                                <h:selectOneMenu value="#{reisAdminController.reis.aankomstLocatie.id}"
+                                                                 class="form-control"
+                                                                 id="aankomstlocatie">
+                                                    <f:selectItem itemLabel="- Selecteer een bestemming -"/>
+
+                                                    <c:if test="#{empty reisAdminController.reis.aankomstLocatie.naam}">
+                                                        <f:selectItems value="#{reisAdminController.locaties}"
+                                                                       var="land"
+                                                                       itemValue="#{land.id}" itemLabel="#{land.naam}"/>
+                                                    </c:if>
+                                                    <c:if test="#{not empty reisAdminController.reis.aankomstLocatie.naam}">
+                                                        <f:selectItems
+                                                                value="#{reisAdminController.getAankomstLocatiesWithReis()}"
+                                                                var="land" itemValue="#{land.id}"
+                                                                itemLabel="#{land.naam}"/>
+                                                    </c:if>
+                                                </h:selectOneMenu>
+                                            </div>
+
+                                            <div class="col-12 col-lg-6 form-group">
+                                                <h:outputLabel value="TransportMiddel" for="transportmiddel"/>
+                                                <h:selectOneMenu value="#{reisAdminController.reis.transportmiddel.id}"
+                                                                 class="form-control"
+                                                                 id="transportmiddel">
+                                                    <f:selectItem itemLabel="- Selecteer een transportmiddel -"/>
+
+                                                    <c:if test="#{empty reisAdminController.reis.transportmiddel.naam}">
+                                                        <f:selectItems value="#{reisAdminController.transportmiddelen}"
+                                                                       var="transport" itemValue="#{transport.id}"
+                                                                       itemLabel="#{transport.naam}"/>
+                                                    </c:if>
+                                                    <c:if test="#{not empty reisAdminController.reis.transportmiddel.naam}">
+                                                        <f:selectItems
+                                                                value="#{reisAdminController.getTransportsWithReis()}"
+                                                                var="transport" itemValue="#{transport.id}"
+                                                                itemLabel="#{transport.naam}"/>
+                                                    </c:if>
+                                                </h:selectOneMenu>
+                                            </div>
+                                            <div class="col-12 col-lg-12 form-group">
+                                                <h:commandButton value="Opslaan" styleClass="btn btn-success"
+                                                                 style="float: right;"
+                                                                 action="#{reisAdminController.ReisSave()}"/>
+                                            </div>
+                                        </div>
+                                    </h:form>
+                                </c:if>
+                                <c:if test="#{authController.logedinPersoon.functie!='ADMIN'}">
+                                    <h3>U heeft geen toegang tot deze pagina!</h3>
+                                </c:if>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

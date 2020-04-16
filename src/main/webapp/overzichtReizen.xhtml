@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="templates/templ.xhtml">
+    <ui:define name="body">
+        <div class="mainpage">
+            <div class="container">
+                <div class="row">
+                    <div class="mx-auto my-3">
+                        <div class="card">
+                            <h:form id="zoekReisForm" class="row m-3">
+                                <div class="form-row col-lg-6 col-12">
+                                    <div class="form-group col-sm-6">
+                                        <h:outputLabel for="vertrek" value="Vertrekplaats:"/>
+                                        <h:selectOneMenu styleClass="form-control" id="vertrek"
+                                                         value="#{reisController.gezochteReis.vertrekLocatie.id}">
+                                            <f:selectItem itemLabel="Alle vertrekplaatsen"/>
+                                            <f:selectItems value="#{reisController.locaties}" var="locatie"
+                                                           itemValue="#{locatie.id}"
+                                                           itemLabel="#{locatie.naam} (#{locatie.land.naam})"/>
+                                        </h:selectOneMenu>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <h:outputLabel for="bestemming" value="Bestemming:"/>
+                                        <h:selectOneMenu styleClass="form-control" id="bestemming"
+                                                         value="#{reisController.gezochteReis.aankomstLocatie.id}">
+                                            <f:selectItem itemLabel="Alle bestemmingen"/>
+                                            <f:selectItems value="#{indexController.locaties}" var="bestemming"
+                                                           itemValue="#{bestemming.id}"
+                                                           itemLabel="#{bestemming.naam} (#{bestemming.land.naam})"/>
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div class="form-row col-lg-6 col-12">
+                                    <div class="form-group col-6">
+                                        <h:outputLabel for="vanDatum" value="Van:"/><br/>
+                                        <p:calendar id="vanDatum" value="#{reisController.gezochteReis.vertrekDatum}"
+                                                    placeholder="dd/mm/yyyy"
+                                                    pattern="dd/mm/yyyy" mask="true">
+                                        </p:calendar>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <h:outputLabel for="totDatum" value="Tot:"/><br/>
+                                        <p:calendar id="totDatum" value="#{reisController.gezochteReis.aankomstDatum}"
+                                                    placeholder="dd/mm/yyyy"
+                                                    pattern="dd/mm/yyyy" mask="true">
+                                        </p:calendar>
+                                    </div>
+                                </div>
+                                <div class="form-row col-12">
+                                    <div class="form-group col-sm-3 col-4">
+                                        <h:outputLabel for="aantal" value="Aantal:"/>
+                                        <p:inputText id="aantal" styleClass="form-control"
+                                                     value="#{reisController.gezochteReis.aantalPlaatsen}"
+                                                     placeholder="Aantal pers."/>
+                                    </div>
+                                    <div class="form-group col-sm-3 col-4">
+                                        <h:outputLabel for="maxPrijs" value="Max prijs:"/>
+                                        <p:inputText id="maxPrijs" styleClass="form-control"
+                                                     value="#{reisController.gezochteReis.prijs}"
+                                                     placeholder="Max prijs"/>
+                                    </div>
+                                    <div class="form-group col-sm-3 col-4">
+                                        <h:outputLabel for="transport" value="Transportmiddel:"/>
+                                        <h:selectOneMenu styleClass="form-control" id="transport"
+                                                         value="#{reisController.gezochteReis.transportmiddel.id}">
+                                            <f:selectItem itemLabel="Alle middelen"/>
+                                            <f:selectItems value="#{reisController.transportmiddelen}"
+                                                           var="transportmiddel" itemValue="#{transportmiddel.id}"
+                                                           itemLabel="#{transportmiddel.naam}"/>
+                                        </h:selectOneMenu>
+                                    </div>
+                                    <div class="form-group col-sm-3 col-4 m-auto">
+                                        <h:commandButton styleClass="btn btn-primary" value="Zoeken"
+                                                         action="#{reisController.zoekReis}"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+
+
+                        <div class="card my-3" style="background:rgba(255,255,255,0.8)">
+                            <div class="card-body">
+                                <h3 class="card-title">Uw gezochte reizen</h3>
+                                <h:form>
+                                    <c:if test="#{reisController.zoekResultaat.size() > 0}">
+                                        <div class="row">
+                                            <ui:repeat value="#{reisController.zoekResultaat}" var="reis">
+                                                <div class="col-12 col-md-6 my-2">
+                                                    <div class="card shadow">
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                                <div class="col-8">
+                                                                    <h5 class="card-title">#{reis.aankomstLocatie.naam} (#{reis.aankomstLocatie.land.naam})</h5>
+                                                                </div>
+                                                                <div class="col-auto ml-auto">
+                                                                    <b>
+                                                                        <h:outputText value="#{reis.prijs}">
+                                                                            <f:convertNumber currencyCode="EUR"
+                                                                                             type="currency"/>
+                                                                        </h:outputText>
+                                                                    </b>
+                                                                </div>
+                                                                <div class="col-12 col-lg-6">
+                                                                    <div class="row">
+                                                                        <div class="col-6">
+                                                                            <p>Vertrek:
+                                                                                <br/>
+                                                                                <h:outputText
+                                                                                        value="#{reis.vertrekDatum}">
+                                                                                    <f:convertDateTime
+                                                                                            pattern="dd/MM/yyyy"/>
+                                                                                </h:outputText>
+                                                                                <br/>
+                                                                                <h:outputText
+                                                                                        value="#{reis.vertrekDatum}">
+                                                                                    <f:convertDateTime pattern="HH:mm"/>
+                                                                                </h:outputText>
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <p>Aankomst:
+                                                                                <br/>
+                                                                                <h:outputText
+                                                                                        value="#{reis.aankomstDatum}">
+                                                                                    <f:convertDateTime
+                                                                                            pattern="dd/MM/yyyy"/>
+                                                                                </h:outputText>
+                                                                                <br/>
+                                                                                <h:outputText
+                                                                                        value="#{reis.aankomstDatum}">
+                                                                                    <f:convertDateTime pattern="HH:mm"/>
+                                                                                </h:outputText>
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-lg-6">
+                                                                    <div class="row">
+                                                                        <div class="col-6 col-lg-12">
+                                                                            <p>Transportmiddel:
+                                                                                <br/>
+                                                                                #{reis.transportmiddel.naam}
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col-6 col-lg-12">
+                                                                            <p>Aantal p.:
+                                                                                <br/>
+                                                                                #{reis.aantalPlaatsen}
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <c:if test="#{authController.logedinPersoon.email!=null}">
+                                                                <h:commandButton styleClass="btn btn-primary"
+                                                                                 action="#{boekingController.boekReis(reis)}"
+                                                                                 value="Boeken"/>
+                                                            </c:if>
+                                                            <c:if test="#{authController.logedinPersoon.email==null}">
+                                                                <p>U moet inloggen om te boeken.</p>
+                                                            </c:if>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ui:repeat>
+                                        </div>
+                                    </c:if>
+                                    <c:if test="#{reisController.zoekResultaat.size() == 0}">
+                                        <h5 class="mt-5">Oeps! Geen reis gevonden</h5>
+                                        <p>Probeer een andere reis te zoeken.</p>
+                                    </c:if>
+                                    <h:commandLink styleClass="btn btn-primary mt-3" action="index">
+                                        <i class="fas fa-arrow-left"></i> Terug
+                                    </h:commandLink>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>
